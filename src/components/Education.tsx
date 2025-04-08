@@ -1,4 +1,3 @@
-
 import { Book } from 'lucide-react';
 
 const Education = () => {
@@ -118,19 +117,6 @@ const Education = () => {
                 </div>
               ))}
             </div>
-            
-            <div className="mt-8 text-center">
-              <a 
-                href="#" 
-                className="inline-flex items-center text-primary hover:underline"
-              >
-                View all certifications
-                <svg className="ml-1 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -139,4 +125,3 @@ const Education = () => {
 };
 
 export default Education;
-
