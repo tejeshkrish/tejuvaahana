@@ -1,6 +1,40 @@
+
+import React, { useState } from 'react';
 import { Mail, Linkedin, Github, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Prepare email details
+    const mailtoLink = `mailto:tejeshkumar448@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
+
+    // Reset form
+    setName('');
+    setEmail('');
+    setSubject('');
+    setMessage('');
+
+    // Show toast notification
+    toast({
+      title: "Email Drafted",
+      description: "Your email has been prepared in your default email client.",
+    });
+  };
+
   return (
     <section id="contact" className="bg-secondary/30">
       <div className="section-container">
@@ -97,16 +131,16 @@ const Contact = () => {
           </div>
           
           <div>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Name
                 </label>
-                <input
+                <Input
                   type="text"
                   id="name"
-                  name="name"
-                  className="w-full px-4 py-3 border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Your name"
                   required
                 />
@@ -116,11 +150,11 @@ const Contact = () => {
                 <label htmlFor="email" className="block text-sm font-medium mb-2">
                   Email
                 </label>
-                <input
+                <Input
                   type="email"
                   id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email"
                   required
                 />
@@ -130,11 +164,11 @@ const Contact = () => {
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">
                   Subject
                 </label>
-                <input
+                <Input
                   type="text"
                   id="subject"
-                  name="subject"
-                  className="w-full px-4 py-3 border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   placeholder="Subject"
                   required
                 />
@@ -144,22 +178,19 @@ const Contact = () => {
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
                   Message
                 </label>
-                <textarea
+                <Textarea
                   id="message"
-                  name="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   rows={6}
-                  className="w-full px-4 py-3 border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                   placeholder="Your message"
                   required
-                ></textarea>
+                ></Textarea>
               </div>
               
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-              >
+              <Button type="submit" className="w-full">
                 Send Message
-              </button>
+              </Button>
             </form>
           </div>
         </div>
