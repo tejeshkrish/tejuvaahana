@@ -8,7 +8,7 @@ const Education = () => {
       degree: "M.Tech Integrated Software Engineering, Computer Science",
       period: "2017 - 2022",
       grade: "9.12/10 CGPA",
-      logo: "/lovable-uploads/4ecee192-1209-4c94-af7e-03e0516da815.png",
+      // Removed logo property
       activities: [
         "Public Relations Chair - IEEE NPSS",
         "Program Coordinator - i-PACT 2021 (Innovations in Power and Advanced Computing Technologies)"
@@ -19,7 +19,7 @@ const Education = () => {
       degree: "Higher Secondary Education, MPC",
       period: "2015 - 2017",
       grade: "97.1/100 %",
-      logo: null
+      // Removed logo property
     }
   ];
 
@@ -28,31 +28,31 @@ const Education = () => {
       name: "Product Assurance and Security Yellow Belt - Software",
       issuer: "Intel Corporation",
       issued: "Feb 2023",
-      logo: "/lovable-uploads/cab418db-d8d4-4f25-89d6-1280c19f9ac7.png"
+      // Removed logo property
     },
     {
       name: "Product Assurance and Security White Belt",
       issuer: "Intel Corporation",
       issued: "Feb 2022",
-      logo: "/lovable-uploads/cab418db-d8d4-4f25-89d6-1280c19f9ac7.png"
+      // Removed logo property
     },
     {
       name: "Security Analyst",
       issuer: "nasscom",
       issued: "Aug 2021",
-      logo: null
+      // Removed logo property
     },
     {
       name: "Embedded Hardware and Operating Systems",
       issuer: "Coursera",
       issued: "Jun 2020",
-      logo: null
+      // Removed logo property
     },
     {
       name: "The Bits and Bytes of Computer Networking",
       issuer: "Google",
       issued: "Nov 2019",
-      logo: null
+      // Removed logo property
     }
   ];
 
@@ -73,11 +73,7 @@ const Education = () => {
                   <div className="absolute w-3 h-3 bg-primary rounded-full left-[-7px] top-3"></div>
                   
                   <div className="flex items-start gap-4">
-                    {edu.logo && (
-                      <div className="bg-secondary/50 p-2 rounded-md w-12 h-12 flex items-center justify-center">
-                        <img src={edu.logo} alt={edu.institution} className="w-full h-full object-contain" />
-                      </div>
-                    )}
+                    {/* Removed logo rendering */}
                     
                     <div>
                       <h4 className="text-xl">{edu.institution}</h4>
@@ -111,11 +107,7 @@ const Education = () => {
                   <div className="absolute w-3 h-3 bg-primary rounded-full left-[-7px] top-3"></div>
                   
                   <div className="flex items-start gap-4">
-                    {cert.logo && (
-                      <div className="bg-secondary/50 p-2 rounded-md w-12 h-12 flex items-center justify-center">
-                        <img src={cert.logo} alt={cert.issuer} className="w-full h-full object-contain" />
-                      </div>
-                    )}
+                    {/* Removed logo rendering */}
                     
                     <div>
                       <h4 className="text-xl">{cert.name}</h4>
@@ -147,3 +139,4 @@ const Education = () => {
 };
 
 export default Education;
+
