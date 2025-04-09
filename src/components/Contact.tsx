@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, Github, MapPin } from 'lucide-react';
+import { Mail, Linkedin, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -71,27 +71,12 @@ const Contact = () => {
                 <div>
                   <h3 className="text-lg font-medium">LinkedIn</h3>
                   <a 
-                    href="https://www.linkedin.com/in/tejesh/"
+                    href="https://www.linkedin.com/in/tejeshk"
                     target="_blank"
                     rel="noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    linkedin.com/in/tejesh
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <Github className="w-6 h-6 text-primary mt-1" />
-                <div>
-                  <h3 className="text-lg font-medium">GitHub</h3>
-                  <a 
-                    href="https://github.com/tejesh"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    github.com/tejesh
+                    linkedin.com/in/tejeshk
                   </a>
                 </div>
               </div>
@@ -101,22 +86,13 @@ const Contact = () => {
               <h3 className="text-xl mb-4">Connect With Me</h3>
               <div className="flex space-x-4">
                 <a 
-                  href="https://www.linkedin.com/in/tejesh/"
+                  href="https://www.linkedin.com/in/tejeshk"
                   target="_blank"
                   rel="noreferrer"
                   className="w-10 h-10 flex items-center justify-center rounded-full bg-[#0077B5] text-white hover:opacity-90 transition-opacity"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} />
-                </a>
-                <a 
-                  href="https://github.com/tejesh"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-[#333] text-white hover:opacity-90 transition-opacity"
-                  aria-label="GitHub"
-                >
-                  <Github size={20} />
                 </a>
                 <a 
                   href="mailto:tejeshkumar448@gmail.com"
