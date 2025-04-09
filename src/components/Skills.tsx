@@ -1,7 +1,33 @@
 
 import { Code } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
 
 const Skills = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.disconnect();
+      }
+    };
+  }, []);
+
   const skillCategories = [
     {
       category: "Languages & Frameworks",
@@ -37,7 +63,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="bg-secondary/30">
+    <section id="skills" className="bg-secondary/30" ref={sectionRef}>
       <div className="section-container">
         <h2 className="section-title">Skills</h2>
         
@@ -48,7 +74,7 @@ const Skills = () => {
             </h3>
             <div className="space-y-6">
               {skillCategories.map((category, categoryIndex) => (
-                <div key={categoryIndex} className="mb-8">
+                <div key={categoryIndex} className="mb-8 animate-fade-in" style={{animationDelay: `${categoryIndex * 100}ms`}}>
                   <h4 className="text-xl mb-4">{category.category}</h4>
                   <div className="space-y-4">
                     {category.skills.map((skill, skillIndex) => (
@@ -59,8 +85,11 @@ const Skills = () => {
                         </div>
                         <div className="w-full bg-muted h-2 rounded-full overflow-hidden">
                           <div 
-                            className="bg-primary h-full rounded-full transition-all duration-700 ease-out"
-                            style={{ width: `${skill.level}%`, transitionDelay: `${skillIndex * 100}ms` }}
+                            className="bg-primary h-full rounded-full transition-all duration-1000 ease-out"
+                            style={{ 
+                              width: isVisible ? `${skill.level}%` : '0%', 
+                              transitionDelay: `${categoryIndex * 100 + skillIndex * 100}ms` 
+                            }}
                           ></div>
                         </div>
                       </div>
@@ -81,26 +110,31 @@ const Skills = () => {
               </p>
               
               <div className="space-y-4">
-                <div className="border border-muted p-6 hover:border-primary/50 transition-colors">
-                  <h4 className="text-xl mb-2">Frontend Development</h4>
-                  <p className="text-muted-foreground">
-                    Creating responsive, accessible, and performant user interfaces using React.js and modern JavaScript.
-                  </p>
-                </div>
-                
-                <div className="border border-muted p-6 hover:border-primary/50 transition-colors">
-                  <h4 className="text-xl mb-2">Backend Systems</h4>
-                  <p className="text-muted-foreground">
-                    Developing scalable and secure backend services using Python, Node.js, and RESTful APIs.
-                  </p>
-                </div>
-                
-                <div className="border border-muted p-6 hover:border-primary/50 transition-colors">
-                  <h4 className="text-xl mb-2">Data Processing</h4>
-                  <p className="text-muted-foreground">
-                    Building efficient data processing systems and implementing analysis pipelines.
-                  </p>
-                </div>
+                {[
+                  {
+                    title: "Frontend Development",
+                    description: "Creating responsive, accessible, and performant user interfaces using React.js and modern JavaScript."
+                  },
+                  {
+                    title: "Backend Systems",
+                    description: "Developing scalable and secure backend services using Python, Node.js, and RESTful APIs."
+                  },
+                  {
+                    title: "Data Processing",
+                    description: "Building efficient data processing systems and implementing analysis pipelines."
+                  }
+                ].map((focus, index) => (
+                  <div 
+                    key={index} 
+                    className={`border border-muted p-6 hover:border-primary/50 transition-all duration-500 animate-fade-in hover:translate-x-1 hover:shadow-md`}
+                    style={{ animationDelay: `${800 + index * 200}ms` }}
+                  >
+                    <h4 className="text-xl mb-2">{focus.title}</h4>
+                    <p className="text-muted-foreground">
+                      {focus.description}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

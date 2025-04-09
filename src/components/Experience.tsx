@@ -1,7 +1,34 @@
 
 import { Briefcase } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const Experience = () => {
+  const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in');
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    timelineRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      timelineRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
   const experiences = [
     {
       title: "Software Application Development Engineer",
@@ -70,12 +97,17 @@ const Experience = () => {
         
         <div className="mt-12">
           {experiences.map((exp, index) => (
-            <div key={index} className="timeline-item">
+            <div 
+              key={index} 
+              className="timeline-item opacity-0 translate-y-8 transition-all duration-700" 
+              style={{ transitionDelay: `${index * 150}ms` }}
+              ref={el => (timelineRefs.current[index] = el)}
+            >
               <div className="flex flex-col md:flex-row md:items-start gap-4 mb-2">
-                <div className="bg-muted p-3 rounded-md w-12 h-12 flex items-center justify-center">
+                <div className="bg-muted p-3 rounded-md w-12 h-12 flex items-center justify-center transform hover:rotate-12 transition-transform">
                   <Briefcase className="w-6 h-6 text-primary" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xl font-medium">{exp.title}</h3>
                   <p className="text-primary">{exp.company}</p>
                   <p className="text-muted-foreground text-sm mb-4">{exp.period} · {exp.location}</p>
@@ -83,7 +115,7 @@ const Experience = () => {
                   {exp.responsibilities && (
                     <ul className="list-disc list-outside ml-5 space-y-2 text-muted-foreground">
                       {exp.responsibilities.map((resp, idx) => (
-                        <li key={idx}>{resp}</li>
+                        <li key={idx} className="hover:text-foreground transition-colors">{resp}</li>
                       ))}
                     </ul>
                   )}
@@ -91,7 +123,10 @@ const Experience = () => {
                   {exp.skills && (
                     <div className="mt-4">
                       {exp.skills.map((skill, idx) => (
-                        <span key={idx} className="skill-item">
+                        <span 
+                          key={idx} 
+                          className="skill-item hover:bg-primary hover:text-primary-foreground transform hover:scale-105 transition-all"
+                        >
                           {skill}
                         </span>
                       ))}

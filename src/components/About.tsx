@@ -1,3 +1,4 @@
+
 import { Briefcase, Mail, MapPin } from 'lucide-react';
 
 const About = () => {
@@ -7,7 +8,7 @@ const About = () => {
         <h2 className="section-title">About Me</h2>
         
         <div className="grid md:grid-cols-3 gap-12">
-          <div className="md:col-span-2 space-y-6">
+          <div className="md:col-span-2 space-y-6 animate-fade-in" style={{animationDelay: '0.2s'}}>
             <p className="text-lg md:text-xl">
               Developing full-stack web applications and automations to safeguard Intel's external intellectual property.
             </p>
@@ -28,16 +29,16 @@ const About = () => {
             <div className="pt-4">
               <a 
                 href="#contact" 
-                className="inline-flex items-center justify-center px-6 py-3 border border-primary bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 border border-primary bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:translate-y-[-3px] hover:shadow-lg"
               >
                 Contact Me
               </a>
             </div>
           </div>
           
-          <div className="space-y-6">
+          <div className="space-y-6 animate-fade-in" style={{animationDelay: '0.4s'}}>
             <div className="space-y-4">
-              <div className="flex items-start space-x-3">
+              <div className="flex items-start space-x-3 hover:translate-x-1 transition-transform duration-300">
                 <Briefcase className="w-5 h-5 mt-1 text-primary" />
                 <div>
                   <h3 className="text-lg font-medium">Current Position</h3>
@@ -45,7 +46,7 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="flex items-start space-x-3">
+              <div className="flex items-start space-x-3 hover:translate-x-1 transition-transform duration-300">
                 <MapPin className="w-5 h-5 mt-1 text-primary" />
                 <div>
                   <h3 className="text-lg font-medium">Location</h3>
@@ -53,7 +54,7 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="flex items-start space-x-3">
+              <div className="flex items-start space-x-3 hover:translate-x-1 transition-transform duration-300">
                 <Mail className="w-5 h-5 mt-1 text-primary" />
                 <div>
                   <h3 className="text-lg font-medium">Email</h3>
@@ -67,22 +68,17 @@ const About = () => {
             <div className="border-t border-border pt-6">
               <h3 className="text-lg font-medium mb-3">Languages</h3>
               <ul className="space-y-2">
-                <li className="flex justify-between">
-                  <span>English</span>
-                  <span className="text-muted-foreground">Full professional proficiency</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Hindi</span>
-                  <span className="text-muted-foreground">Full professional proficiency</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Telugu</span>
-                  <span className="text-muted-foreground">Native or bilingual proficiency</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>French</span>
-                  <span className="text-muted-foreground">Elementary proficiency</span>
-                </li>
+                {[
+                  { name: "English", level: "Full professional proficiency" },
+                  { name: "Hindi", level: "Full professional proficiency" },
+                  { name: "Telugu", level: "Native or bilingual proficiency" },
+                  { name: "French", level: "Elementary proficiency" }
+                ].map((language, index) => (
+                  <li key={index} className="flex justify-between hover:bg-secondary/50 p-2 transition-colors rounded-md">
+                    <span>{language.name}</span>
+                    <span className="text-muted-foreground">{language.level}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
