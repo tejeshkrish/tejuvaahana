@@ -1,4 +1,3 @@
-
 import { Briefcase, Mail, MapPin } from 'lucide-react';
 
 const About = () => {
@@ -58,8 +57,8 @@ const About = () => {
                 <Mail className="w-5 h-5 mt-1 text-primary" />
                 <div>
                   <h3 className="text-lg font-medium">Email</h3>
-                  <a href="mailto:contact@tejesh.dev" className="hover:underline">
-                    contact@tejesh.dev
+                  <a href="mailto:tejeshkumar448@gmail.com" className="hover:underline">
+                    tejeshkumar448@gmail.com
                   </a>
                 </div>
               </div>

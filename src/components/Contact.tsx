@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, Linkedin, Github, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -120,7 +119,7 @@ const Contact = () => {
                   <Github size={20} />
                 </a>
                 <a 
-                  href="mailto:contact@tejesh.dev"
+                  href="mailto:tejeshkumar448@gmail.com"
                   className="w-10 h-10 flex items-center justify-center rounded-full bg-[#EA4335] text-white hover:opacity-90 transition-opacity"
                   aria-label="Email"
                 >
