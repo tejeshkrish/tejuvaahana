@@ -23,9 +23,8 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex items-center relative">
       <div className="section-container grid md:grid-cols-2 gap-12 items-center">
         <div className={`space-y-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="font-garamond font-normal relative overflow-hidden pb-2 animate-tracking-in-expand">
+          <h1 className="font-garamond font-normal relative overflow-hidden pb-2">
             <span className="block">Tejesh Krishnammagari</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary origin-left transform transition-transform duration-1000 scale-x-100"></span>
           </h1>
           <p className={`text-xl md:text-2xl font-garamond text-muted-foreground transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <span className="animate-text-focus-in inline-block">Software Application Development Engineer</span>
@@ -51,7 +50,7 @@ const Hero = () => {
         </div>
         <div className={`flex justify-center md:justify-end transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/30 to-transparent animate-rotate-center opacity-70"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent opacity-50 animate-pulse"></div>
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl transition-transform duration-500 hover:scale-105 animate-bounce-in" style={{ animationDelay: '1.2s' }}>
               <img 
                 src="/lovable-uploads/02fbb8f6-1abc-4070-9228-1a4ac756417b.png" 
@@ -59,7 +58,6 @@ const Hero = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute inset-0 rounded-full bg-primary/10 animate-ping opacity-30 scale-110"></div>
           </div>
         </div>
       </div>
