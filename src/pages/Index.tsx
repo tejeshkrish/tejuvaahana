@@ -13,10 +13,10 @@ const Index = () => {
   useEffect(() => {
     document.title = 'Tejesh Krishnammagari | Software Engineer';
     
-    // Add Google Fonts link for Garamond fallback
+    // Add Google Fonts link for both fonts
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap';
+    link.href = 'https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500;600&display=swap';
     document.head.appendChild(link);
     
     return () => {
@@ -25,7 +25,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="font-garamond">
+    <div className="font-raleway">
       <Navbar />
       <main>
         <Hero />

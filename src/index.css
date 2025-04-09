@@ -86,11 +86,13 @@
   }
   
   body {
-    @apply bg-background text-foreground font-garamond;
+    @apply bg-background text-foreground font-raleway;
+    line-height: 1.6;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-garamond tracking-tight;
+    @apply font-garamond tracking-tight text-foreground/90;
+    line-height: 1.2;
   }
   
   h1 {
@@ -106,7 +108,7 @@
   }
   
   p {
-    @apply text-base md:text-lg leading-relaxed;
+    @apply text-base md:text-lg leading-relaxed text-foreground/80;
   }
   
   section {
@@ -130,7 +132,7 @@
   }
   
   .nav-link {
-    @apply relative text-foreground/80 hover:text-foreground transition-colors duration-200 uppercase tracking-wider text-sm;
+    @apply relative text-foreground/80 hover:text-foreground transition-colors duration-200 uppercase tracking-wider text-sm font-medium;
   }
   
   .nav-link::after {
@@ -166,6 +168,10 @@
   
   .skill-item {
     @apply py-2 px-4 bg-secondary rounded-full text-secondary-foreground inline-block mr-2 mb-2 text-sm transition-all duration-300;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:translate-y-[-5px] hover:border-primary/50;
   }
 }
 
