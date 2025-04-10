@@ -26,7 +26,7 @@ const BackgroundAnimation = ({ isActive }: BackgroundAnimationProps) => {
   
   return (
     <div className={`fixed inset-0 z-0 overflow-hidden ${fade ? 'animate-fade-out' : 'animate-fade-in'}`}>
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-800 opacity-90"></div>
+      <div className="absolute inset-0 bg-white opacity-90"></div>
     </div>
   );
 };
