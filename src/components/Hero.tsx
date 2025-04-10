@@ -4,9 +4,17 @@ import { useEffect, useState } from 'react';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showPulse, setShowPulse] = useState(true);
   
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Set a timeout to hide the pulse effect after 3 seconds
+    const timer = setTimeout(() => {
+      setShowPulse(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const scrollToAbout = () => {
@@ -50,7 +58,7 @@ const Hero = () => {
         </div>
         <div className={`flex justify-center md:justify-end transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent opacity-50 animate-pulse"></div>
+            <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-transparent opacity-50 ${showPulse ? 'animate-pulse' : 'opacity-0 transition-opacity duration-500'}`}></div>
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl transition-transform duration-500 hover:scale-105 animate-bounce-in" style={{ animationDelay: '1.2s' }}>
               <img 
                 src="/lovable-uploads/02fbb8f6-1abc-4070-9228-1a4ac756417b.png" 
