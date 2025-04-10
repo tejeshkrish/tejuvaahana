@@ -74,9 +74,9 @@ const About = () => {
                   { name: "Telugu", level: "Native or bilingual proficiency" },
                   { name: "French", level: "Elementary proficiency" }
                 ].map((language, index) => (
-                  <li key={index} className="flex justify-between hover:bg-secondary/50 p-2 transition-colors rounded-md group">
+                  <li key={index} className="flex justify-between items-center hover:bg-secondary/50 p-2 transition-colors rounded-md group">
                     <span className="font-medium">{language.name}</span>
-                    <span className="text-muted-foreground group-hover:text-primary transition-colors">{language.level}</span>
+                    <span className="text-muted-foreground group-hover:text-primary transition-colors text-sm">{language.level}</span>
                   </li>
                 ))}
               </ul>
