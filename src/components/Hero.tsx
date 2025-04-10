@@ -1,20 +1,30 @@
 
 import { ArrowDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import BackgroundAnimation from './BackgroundAnimation';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showPulse, setShowPulse] = useState(true);
+  const [showAnimation, setShowAnimation] = useState(true);
   
   useEffect(() => {
     setIsLoaded(true);
     
     // Set a timeout to hide the pulse effect after 3 seconds
-    const timer = setTimeout(() => {
+    const pulseTimer = setTimeout(() => {
       setShowPulse(false);
     }, 3000);
     
-    return () => clearTimeout(timer);
+    // Set a timeout to hide the background animation after 10 seconds
+    const animationTimer = setTimeout(() => {
+      setShowAnimation(false);
+    }, 10000);
+    
+    return () => {
+      clearTimeout(pulseTimer);
+      clearTimeout(animationTimer);
+    };
   }, []);
 
   const scrollToAbout = () => {
@@ -29,7 +39,9 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center relative">
-      <div className="section-container grid md:grid-cols-2 gap-12 items-center">
+      <BackgroundAnimation isActive={showAnimation} />
+      
+      <div className="section-container grid md:grid-cols-2 gap-12 items-center relative z-10">
         <div className={`space-y-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="font-garamond font-normal relative overflow-hidden pb-2">
             <span className="block">Tejesh Krishnammagari</span>
@@ -72,7 +84,7 @@ const Hero = () => {
       
       <button 
         onClick={scrollToAbout}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors animate-bounce"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-muted-foreground hover:text-foreground transition-colors animate-bounce z-10"
         aria-label="Scroll to About section"
       >
         <span className="text-sm mb-2">Scroll Down</span>

@@ -244,6 +244,15 @@
   }
 }
 
+@keyframes move-across {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 50px));
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.8s ease forwards;
 }
@@ -259,3 +268,4 @@
 .animate-floating {
   animation: floating 3s ease-in-out infinite;
 }
+
