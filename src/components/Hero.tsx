@@ -108,7 +108,7 @@ const Hero = () => {
               style={{ animationDelay: '1.2s' }}
             >
               <img
-                // src="/lovable-uploads/02fbb8f6-1abc-4070-9228-1a4ac756417b.png"
+                src="/lovable-uploads/02fbb8f6-1abc-4070-9228-1a4ac756417b.png"
                 alt="Tejesh Krishnammagari"
                 className="w-full h-full object-cover"
               />
