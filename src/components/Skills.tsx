@@ -1,4 +1,3 @@
-
 import { Code } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 
@@ -56,7 +55,6 @@ const Skills = () => {
       category: "Machine Learning",
       skills: [
         { name: "Machine Learning", level: 60 },
-        { name: "Random Forest", level: 55 },
         { name: "Data Analysis", level: 75 }
       ]
     }
