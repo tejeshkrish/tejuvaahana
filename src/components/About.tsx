@@ -1,4 +1,3 @@
-
 import { Briefcase, Mail, MapPin } from 'lucide-react';
 
 const About = () => {
