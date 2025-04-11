@@ -22,7 +22,7 @@ const Education = () => {
       institution: "Little Angels High School",
       degree: "Secondary School Certificate (SSC)",
       period: "2014 - 2015",
-      grade: "95% (Estimated)"
+      grade: "98%"
     }
   ];
 
