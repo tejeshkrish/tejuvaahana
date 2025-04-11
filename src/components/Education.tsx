@@ -7,7 +7,6 @@ const Education = () => {
       degree: "M.Tech Integrated Software Engineering, Computer Science",
       period: "2017 - 2022",
       grade: "9.12/10 CGPA",
-      // Removed logo property
       activities: [
         "Public Relations Chair - IEEE NPSS",
         "Program Coordinator - i-PACT 2021 (Innovations in Power and Advanced Computing Technologies)"
@@ -18,7 +17,12 @@ const Education = () => {
       degree: "Higher Secondary Education, MPC",
       period: "2015 - 2017",
       grade: "97.1/100 %",
-      // Removed logo property
+    },
+    {
+      institution: "Little Angels High School",
+      degree: "Secondary School Certificate (SSC)",
+      period: "2014 - 2015",
+      grade: "95% (Estimated)"
     }
   ];
 
@@ -27,31 +31,26 @@ const Education = () => {
       name: "Product Assurance and Security Yellow Belt - Software",
       issuer: "Intel Corporation",
       issued: "Feb 2023",
-      // Removed logo property
     },
     {
       name: "Product Assurance and Security White Belt",
       issuer: "Intel Corporation",
       issued: "Feb 2022",
-      // Removed logo property
     },
     {
       name: "Security Analyst",
       issuer: "nasscom",
       issued: "Aug 2021",
-      // Removed logo property
     },
     {
       name: "Embedded Hardware and Operating Systems",
       issuer: "Coursera",
       issued: "Jun 2020",
-      // Removed logo property
     },
     {
       name: "The Bits and Bytes of Computer Networking",
       issuer: "Google",
       issued: "Nov 2019",
-      // Removed logo property
     }
   ];
 
@@ -72,8 +71,6 @@ const Education = () => {
                   <div className="absolute w-3 h-3 bg-primary rounded-full left-[-7px] top-3"></div>
                   
                   <div className="flex items-start gap-4">
-                    {/* Removed logo rendering */}
-                    
                     <div>
                       <h4 className="text-xl">{edu.institution}</h4>
                       <p className="text-primary">{edu.degree}</p>
@@ -106,8 +103,6 @@ const Education = () => {
                   <div className="absolute w-3 h-3 bg-primary rounded-full left-[-7px] top-3"></div>
                   
                   <div className="flex items-start gap-4">
-                    {/* Removed logo rendering */}
-                    
                     <div>
                       <h4 className="text-xl">{cert.name}</h4>
                       <p className="text-primary">{cert.issuer}</p>
