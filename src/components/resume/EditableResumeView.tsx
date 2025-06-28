@@ -59,9 +59,9 @@ const EditableText = ({
         onChange={(e) => setEditValue(e.target.value)}
         onBlur={handleSave}
         onKeyDown={handleKeyDown}
-        className={`${className} min-h-[60px] border-2 border-blue-400`}
+        className={`${className} min-h-[40px] border-2 border-blue-400 p-1`}
         placeholder={placeholder}
-        style={style}
+        style={{ ...style, fontFamily: 'Times, serif' }}
       />
     ) : (
       <Input
@@ -70,9 +70,9 @@ const EditableText = ({
         onChange={(e) => setEditValue(e.target.value)}
         onBlur={handleSave}
         onKeyDown={handleKeyDown}
-        className={`${className} border-2 border-blue-400`}
+        className={`${className} border-2 border-blue-400 p-1`}
         placeholder={placeholder}
-        style={style}
+        style={{ ...style, fontFamily: 'Times, serif' }}
       />
     );
   }
@@ -80,8 +80,8 @@ const EditableText = ({
   return (
     <div 
       onClick={() => setIsEditing(true)}
-      className={`${className} cursor-pointer hover:bg-gray-50 rounded px-1 py-0.5 transition-colors min-h-[20px] flex items-center`}
-      style={style}
+      className={`${className} cursor-pointer hover:bg-gray-50 rounded px-1 py-0.5 transition-colors min-h-[16px] flex items-center`}
+      style={{ ...style, fontFamily: 'Times, serif' }}
     >
       {value || <span className="text-gray-400">{placeholder}</span>}
     </div>
@@ -99,11 +99,20 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
       
       const element = previewRef.current;
       const opt = {
-        margin: 0.5,
+        margin: [0.4, 0.4, 0.4, 0.4],
         filename: `${data.contact.fullName || 'resume'}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        html2canvas: { 
+          scale: 1.5,
+          useCORS: true,
+          letterRendering: true
+        },
+        jsPDF: { 
+          unit: 'in', 
+          format: 'letter', 
+          orientation: 'portrait',
+          compress: true
+        }
       };
 
       html2pdf().set(opt).from(element).save();
@@ -129,18 +138,30 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-      <div ref={previewRef} className="p-12 bg-white text-black" style={{ fontFamily: 'Times, serif', fontSize: '12px', lineHeight: '1.3', maxWidth: '8.5in', margin: '0 auto' }}>
+      <div 
+        ref={previewRef} 
+        className="bg-white text-black mx-auto"
+        style={{ 
+          fontFamily: 'Times, serif', 
+          fontSize: '11px', 
+          lineHeight: '1.2', 
+          width: '8.5in',
+          minHeight: '11in',
+          padding: '0.5in',
+          color: 'black'
+        }}
+      >
         
         {/* Header */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <EditableText
             value={data.contact.fullName}
             onChange={(value) => updateContact('fullName', value)}
-            className="text-center block mb-3"
+            className="text-center block mb-2"
             placeholder="Your Full Name"
-            style={{ fontSize: '24px', fontWeight: 'bold', letterSpacing: '2px' }}
+            style={{ fontSize: '22px', fontWeight: 'bold', letterSpacing: '1.5px' }}
           />
-          <div className="text-center" style={{ fontSize: '11px' }}>
+          <div className="text-center" style={{ fontSize: '10px' }}>
             <EditableText
               value={data.contact.phone}
               onChange={(value) => updateContact('phone', value)}
@@ -172,9 +193,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Education */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>EDUCATION</h2>
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="font-bold border-b border-black pb-0.5" style={{ fontSize: '12px', letterSpacing: '1px' }}>EDUCATION</h2>
             <Button
               size="sm"
               variant="ghost"
@@ -189,13 +210,13 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 };
                 updateData('education', [...data.education, newEdu]);
               }}
-              className="text-xs"
+              className="text-xs h-6 w-6 p-0"
             >
               <Plus className="w-3 h-3" />
             </Button>
           </div>
-          {data.education.map((edu) => (
-            <div key={edu.id} className="mb-2 group relative">
+          {data.education.map((edu, index) => (
+            <div key={edu.id} className="mb-1.5 group relative">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
@@ -209,9 +230,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       }}
                       className="font-bold"
                       placeholder="Institution Name"
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '11px' }}
                     />
-                    <div className="text-right" style={{ fontSize: '11px' }}>
+                    <div className="text-right" style={{ fontSize: '10px' }}>
                       {edu.gpa && (
                         <div>
                           {edu.gpa.includes('%') ? 'Percentage: ' : 'CGPA: '}
@@ -233,7 +254,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       </div>
                     </div>
                   </div>
-                  <div style={{ fontStyle: 'italic', fontSize: '11px' }}>
+                  <div style={{ fontStyle: 'italic', fontSize: '10px' }}>
                     <EditableText
                       value={edu.degree}
                       onChange={(value) => {
@@ -249,7 +270,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="opacity-0 group-hover:opacity-100 ml-2 text-xs"
+                  className="opacity-0 group-hover:opacity-100 ml-2 h-6 w-6 p-0"
                   onClick={() => {
                     updateData('education', data.education.filter(e => e.id !== edu.id));
                   }}
@@ -262,19 +283,19 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Technical Skills */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>TECHNICAL SKILLS</h2>
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="font-bold border-b border-black pb-0.5" style={{ fontSize: '12px', letterSpacing: '1px' }}>TECHNICAL SKILLS</h2>
             <Button
               size="sm"
               variant="ghost"
               onClick={() => updateData('skills', [...data.skills, 'New Skill'])}
-              className="text-xs"
+              className="h-6 w-6 p-0"
             >
               <Plus className="w-3 h-3" />
             </Button>
           </div>
-          <div className="grid grid-cols-1 gap-1" style={{ fontSize: '11px' }}>
+          <div className="space-y-0.5" style={{ fontSize: '10px' }}>
             <div>
               <span className="font-bold">Languages: </span>
               {data.skills.slice(0, 6).map((skill, index) => (
@@ -292,7 +313,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1 text-xs"
+                    className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1"
                     onClick={() => {
                       updateData('skills', data.skills.filter((_, i) => i !== index));
                     }}
@@ -321,7 +342,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1 text-xs"
+                      className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1"
                       onClick={() => {
                         updateData('skills', data.skills.filter((_, i) => i !== actualIndex));
                       }}
@@ -351,7 +372,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1 text-xs"
+                      className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1"
                       onClick={() => {
                         updateData('skills', data.skills.filter((_, i) => i !== actualIndex));
                       }}
@@ -366,9 +387,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Experience */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>EXPERIENCE</h2>
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="font-bold border-b border-black pb-0.5" style={{ fontSize: '12px', letterSpacing: '1px' }}>EXPERIENCE</h2>
             <Button
               size="sm"
               variant="ghost"
@@ -385,14 +406,14 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 };
                 updateData('experience', [...data.experience, newExp]);
               }}
-              className="text-xs"
+              className="h-6 w-6 p-0"
             >
               <Plus className="w-3 h-3" />
             </Button>
           </div>
           {data.experience.map((exp) => (
-            <div key={exp.id} className="mb-4 group relative">
-              <div className="flex justify-between items-start mb-1">
+            <div key={exp.id} className="mb-3 group relative">
+              <div className="flex justify-between items-start mb-0.5">
                 <div className="flex-1">
                   <EditableText
                     value={exp.title}
@@ -404,9 +425,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     }}
                     className="font-bold block"
                     placeholder="Job Title"
-                    style={{ fontSize: '12px' }}
+                    style={{ fontSize: '11px' }}
                   />
-                  <div style={{ fontStyle: 'italic', fontSize: '11px' }}>
+                  <div style={{ fontStyle: 'italic', fontSize: '10px' }}>
                     <EditableText
                       value={exp.company}
                       onChange={(value) => {
@@ -420,7 +441,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     />
                   </div>
                 </div>
-                <div className="text-right" style={{ fontSize: '11px' }}>
+                <div className="text-right" style={{ fontSize: '10px' }}>
                   <div>
                     {formatDate(exp.startDate)} – {exp.current ? 'Present' : formatDate(exp.endDate)}
                   </div>
@@ -440,7 +461,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="opacity-0 group-hover:opacity-100 ml-2 text-xs"
+                  className="opacity-0 group-hover:opacity-100 ml-2 h-6 w-6 p-0"
                   onClick={() => {
                     updateData('experience', data.experience.filter(e => e.id !== exp.id));
                   }}
@@ -448,9 +469,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                   <Trash2 className="w-3 h-3" />
                 </Button>
               </div>
-              <ul className="space-y-1" style={{ fontSize: '11px' }}>
+              <ul className="space-y-0.5 ml-4" style={{ fontSize: '10px' }}>
                 {exp.achievements.map((achievement, achIndex) => (
-                  <li key={achIndex} className="list-disc ml-4 group/achievement">
+                  <li key={achIndex} className="list-disc group/achievement">
                     <div className="flex items-start gap-1">
                       <EditableText
                         value={achievement}
@@ -470,7 +491,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="opacity-0 group-hover/achievement:opacity-100 h-auto p-0 text-xs"
+                        className="opacity-0 group-hover/achievement:opacity-100 h-auto p-0"
                         onClick={() => {
                           const newExperience = data.experience.map(e => 
                             e.id === exp.id ? {
@@ -486,7 +507,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     </div>
                   </li>
                 ))}
-                <li className="list-none ml-4">
+                <li className="list-none">
                   <Button
                     size="sm"
                     variant="ghost"
@@ -499,7 +520,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       );
                       updateData('experience', newExperience);
                     }}
-                    className="text-xs text-gray-500 h-auto p-0"
+                    className="text-gray-500 h-auto p-0 text-xs"
                   >
                     <Plus className="w-3 h-3 mr-1" />
                     Add achievement
@@ -511,9 +532,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Projects */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>PROJECTS</h2>
+        <div className="mb-2">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="font-bold border-b border-black pb-0.5" style={{ fontSize: '12px', letterSpacing: '1px' }}>PROJECTS</h2>
             <Button
               size="sm"
               variant="ghost"
@@ -527,16 +548,16 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 };
                 updateData('projects', [...data.projects, newProject]);
               }}
-              className="text-xs"
+              className="h-6 w-6 p-0"
             >
               <Plus className="w-3 h-3" />
             </Button>
           </div>
           {data.projects.map((project) => (
-            <div key={project.id} className="mb-3 group relative">
+            <div key={project.id} className="mb-2.5 group relative">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-2 mb-0.5">
                     <EditableText
                       value={project.title}
                       onChange={(value) => {
@@ -547,10 +568,10 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       }}
                       className="font-bold inline"
                       placeholder="Project Title"
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '11px' }}
                     />
-                    <span style={{ fontSize: '11px' }}>|</span>
-                    <div style={{ fontSize: '11px', fontStyle: 'italic' }}>
+                    <span style={{ fontSize: '10px' }}>|</span>
+                    <div style={{ fontSize: '10px', fontStyle: 'italic' }}>
                       {project.technologies.map((tech, index) => (
                         <span key={index}>
                           {tech}
@@ -559,30 +580,25 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       ))}
                     </div>
                   </div>
-                  <ul className="mt-1 space-y-1" style={{ fontSize: '11px' }}>
-                    {project.description.split('. ').map((sentence, index) => (
-                      <li key={index} className="list-disc ml-4">
-                        {sentence}{index < project.description.split('. ').length - 1 && '.'}
-                      </li>
-                    ))}
-                  </ul>
-                  <EditableText
-                    value={project.description}
-                    onChange={(value) => {
-                      const newProjects = data.projects.map(p => 
-                        p.id === project.id ? { ...p, description: value } : p
-                      );
-                      updateData('projects', newProjects);
-                    }}
-                    className="hidden"
-                    multiline
-                    placeholder="Project description..."
-                  />
+                  <div style={{ fontSize: '10px' }}>
+                    <EditableText
+                      value={project.description}
+                      onChange={(value) => {
+                        const newProjects = data.projects.map(p => 
+                          p.id === project.id ? { ...p, description: value } : p
+                        );
+                        updateData('projects', newProjects);
+                      }}
+                      className="block"
+                      multiline
+                      placeholder="Project description..."
+                    />
+                  </div>
                 </div>
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="opacity-0 group-hover:opacity-100 text-xs"
+                  className="opacity-0 group-hover:opacity-100 h-6 w-6 p-0"
                   onClick={() => {
                     updateData('projects', data.projects.filter(p => p.id !== project.id));
                   }}
