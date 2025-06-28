@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Plus, Trash2, Edit } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import { ResumeData, Experience, Education, Project, Certification } from '@/types/resume';
 
 interface EditableResumeViewProps {
@@ -16,13 +16,15 @@ const EditableText = ({
   onChange, 
   className = "", 
   multiline = false, 
-  placeholder = "Click to edit" 
+  placeholder = "Click to edit",
+  style = {}
 }: {
   value: string;
   onChange: (value: string) => void;
   className?: string;
   multiline?: boolean;
   placeholder?: string;
+  style?: React.CSSProperties;
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
@@ -57,8 +59,9 @@ const EditableText = ({
         onChange={(e) => setEditValue(e.target.value)}
         onBlur={handleSave}
         onKeyDown={handleKeyDown}
-        className={`${className} min-h-[60px]`}
+        className={`${className} min-h-[60px] border-2 border-blue-400`}
         placeholder={placeholder}
+        style={style}
       />
     ) : (
       <Input
@@ -67,8 +70,9 @@ const EditableText = ({
         onChange={(e) => setEditValue(e.target.value)}
         onBlur={handleSave}
         onKeyDown={handleKeyDown}
-        className={className}
+        className={`${className} border-2 border-blue-400`}
         placeholder={placeholder}
+        style={style}
       />
     );
   }
@@ -76,7 +80,8 @@ const EditableText = ({
   return (
     <div 
       onClick={() => setIsEditing(true)}
-      className={`${className} cursor-pointer hover:bg-gray-50 rounded px-1 py-0.5 transition-colors min-h-[24px] flex items-center`}
+      className={`${className} cursor-pointer hover:bg-gray-50 rounded px-1 py-0.5 transition-colors min-h-[20px] flex items-center`}
+      style={style}
     >
       {value || <span className="text-gray-400">{placeholder}</span>}
     </div>
@@ -116,20 +121,6 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
     updateData('contact', { ...data.contact, [field]: value });
   };
 
-  const addSkill = () => {
-    updateData('skills', [...data.skills, 'New Skill']);
-  };
-
-  const updateSkill = (index: number, value: string) => {
-    const newSkills = [...data.skills];
-    newSkills[index] = value;
-    updateData('skills', newSkills);
-  };
-
-  const removeSkill = (index: number) => {
-    updateData('skills', data.skills.filter((_, i) => i !== index));
-  };
-
   const formatDate = (dateStr: string) => {
     if (!dateStr) return '';
     const date = new Date(dateStr);
@@ -138,66 +129,52 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-      <div ref={previewRef} className="p-8 bg-white text-black" style={{ fontSize: '14px', lineHeight: '1.4' }}>
+      <div ref={previewRef} className="p-12 bg-white text-black" style={{ fontFamily: 'Times, serif', fontSize: '12px', lineHeight: '1.3', maxWidth: '8.5in', margin: '0 auto' }}>
+        
         {/* Header */}
         <div className="text-center mb-6">
           <EditableText
             value={data.contact.fullName}
             onChange={(value) => updateContact('fullName', value)}
-            className="text-2xl font-bold mb-2 text-center"
+            className="text-center block mb-3"
             placeholder="Your Full Name"
+            style={{ fontSize: '24px', fontWeight: 'bold', letterSpacing: '2px' }}
           />
-          <div className="text-sm text-gray-600 space-y-1">
-            <div className="flex justify-center items-center gap-2">
-              <EditableText
-                value={data.contact.phone}
-                onChange={(value) => updateContact('phone', value)}
-                placeholder="+91 1234567890"
-              />
-              <span>•</span>
-              <span>Bangalore</span>
-            </div>
-            <div className="flex justify-center flex-wrap gap-4 text-blue-600">
-              <EditableText
-                value={data.contact.email}
-                onChange={(value) => updateContact('email', value)}
-                placeholder="email@example.com"
-                className="text-blue-600"
-              />
-              <span>◊</span>
-              <EditableText
-                value={data.contact.linkedin}
-                onChange={(value) => updateContact('linkedin', value)}
-                placeholder="linkedin.com/in/username"
-                className="text-blue-600"
-              />
-              <span>◊</span>
-              <EditableText
-                value={data.contact.github}
-                onChange={(value) => updateContact('github', value)}
-                placeholder="github.com/username"
-                className="text-blue-600"
-              />
-            </div>
+          <div className="text-center" style={{ fontSize: '11px' }}>
+            <EditableText
+              value={data.contact.phone}
+              onChange={(value) => updateContact('phone', value)}
+              placeholder="Phone"
+              className="inline"
+            />
+            <span className="mx-1">|</span>
+            <EditableText
+              value={data.contact.email}
+              onChange={(value) => updateContact('email', value)}
+              placeholder="email@example.com"
+              className="inline"
+            />
+            <span className="mx-1">|</span>
+            <EditableText
+              value={data.contact.linkedin}
+              onChange={(value) => updateContact('linkedin', value)}
+              placeholder="linkedin.com/in/username"
+              className="inline"
+            />
+            <span className="mx-1">|</span>
+            <EditableText
+              value={data.contact.github}
+              onChange={(value) => updateContact('github', value)}
+              placeholder="website.com"
+              className="inline"
+            />
           </div>
-        </div>
-
-        {/* Objective */}
-        <div className="mb-6">
-          <h2 className="text-lg font-bold border-b border-gray-300 pb-1 mb-3">OBJECTIVE</h2>
-          <EditableText
-            value={data.summary}
-            onChange={(value) => updateData('summary', value)}
-            multiline
-            placeholder="Write your professional objective..."
-            className="text-sm leading-relaxed"
-          />
         </div>
 
         {/* Education */}
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-bold border-b border-gray-300 pb-1">EDUCATION</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>EDUCATION</h2>
             <Button
               size="sm"
               variant="ghost"
@@ -212,49 +189,67 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 };
                 updateData('education', [...data.education, newEdu]);
               }}
+              className="text-xs"
             >
               <Plus className="w-3 h-3" />
             </Button>
           </div>
-          {data.education.map((edu, index) => (
-            <div key={edu.id} className="mb-3 group relative">
+          {data.education.map((edu) => (
+            <div key={edu.id} className="mb-2 group relative">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
-                    <div>
-                      <EditableText
-                        value={edu.degree}
-                        onChange={(value) => {
-                          const newEducation = data.education.map(e => 
-                            e.id === edu.id ? { ...e, degree: value } : e
-                          );
-                          updateData('education', newEducation);
-                        }}
-                        className="font-semibold"
-                        placeholder="Degree Name"
-                      />
-                      <EditableText
-                        value={edu.institution}
-                        onChange={(value) => {
-                          const newEducation = data.education.map(e => 
-                            e.id === edu.id ? { ...e, institution: value } : e
-                          );
-                          updateData('education', newEducation);
-                        }}
-                        className="text-sm"
-                        placeholder="Institution Name"
-                      />
+                    <EditableText
+                      value={edu.institution}
+                      onChange={(value) => {
+                        const newEducation = data.education.map(e => 
+                          e.id === edu.id ? { ...e, institution: value } : e
+                        );
+                        updateData('education', newEducation);
+                      }}
+                      className="font-bold"
+                      placeholder="Institution Name"
+                      style={{ fontSize: '12px' }}
+                    />
+                    <div className="text-right" style={{ fontSize: '11px' }}>
+                      {edu.gpa && (
+                        <div>
+                          {edu.gpa.includes('%') ? 'Percentage: ' : 'CGPA: '}
+                          <EditableText
+                            value={edu.gpa}
+                            onChange={(value) => {
+                              const newEducation = data.education.map(e => 
+                                e.id === edu.id ? { ...e, gpa: value } : e
+                              );
+                              updateData('education', newEducation);
+                            }}
+                            className="inline"
+                            placeholder="Grade"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        {formatDate(edu.startDate)} – {formatDate(edu.endDate)}
+                      </div>
                     </div>
-                    <div className="text-right text-sm">
-                      <div>{formatDate(edu.startDate)} - {formatDate(edu.endDate)}</div>
-                      {edu.gpa && <div>CGPA {edu.gpa}</div>}
-                    </div>
+                  </div>
+                  <div style={{ fontStyle: 'italic', fontSize: '11px' }}>
+                    <EditableText
+                      value={edu.degree}
+                      onChange={(value) => {
+                        const newEducation = data.education.map(e => 
+                          e.id === edu.id ? { ...e, degree: value } : e
+                        );
+                        updateData('education', newEducation);
+                      }}
+                      placeholder="Degree Name"
+                    />
                   </div>
                 </div>
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="opacity-0 group-hover:opacity-100 ml-2"
+                  className="opacity-0 group-hover:opacity-100 ml-2 text-xs"
                   onClick={() => {
                     updateData('education', data.education.filter(e => e.id !== edu.id));
                   }}
@@ -266,94 +261,114 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
           ))}
         </div>
 
-        {/* Skills */}
+        {/* Technical Skills */}
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-bold border-b border-gray-300 pb-1">SKILLS</h2>
-            <Button size="sm" variant="ghost" onClick={addSkill}>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>TECHNICAL SKILLS</h2>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => updateData('skills', [...data.skills, 'New Skill'])}
+              className="text-xs"
+            >
               <Plus className="w-3 h-3" />
             </Button>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-1" style={{ fontSize: '11px' }}>
             <div>
-              <div className="font-medium mb-1">Technical Skills</div>
-              <div className="text-sm space-y-1">
-                {data.skills.slice(0, Math.ceil(data.skills.length/3)).map((skill, index) => (
-                  <div key={index} className="flex items-center group">
+              <span className="font-bold">Languages: </span>
+              {data.skills.slice(0, 6).map((skill, index) => (
+                <span key={index} className="group/skill inline">
+                  <EditableText
+                    value={skill}
+                    onChange={(value) => {
+                      const newSkills = [...data.skills];
+                      newSkills[index] = value;
+                      updateData('skills', newSkills);
+                    }}
+                    className="inline"
+                  />
+                  {index < 5 && index < data.skills.slice(0, 6).length - 1 && ', '}
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1 text-xs"
+                    onClick={() => {
+                      updateData('skills', data.skills.filter((_, i) => i !== index));
+                    }}
+                  >
+                    <Trash2 className="w-2 h-2" />
+                  </Button>
+                </span>
+              ))}
+            </div>
+            <div>
+              <span className="font-bold">Frameworks: </span>
+              {data.skills.slice(6, 10).map((skill, index) => {
+                const actualIndex = 6 + index;
+                return (
+                  <span key={actualIndex} className="group/skill inline">
                     <EditableText
                       value={skill}
-                      onChange={(value) => updateSkill(index, value)}
-                      className="flex-1"
+                      onChange={(value) => {
+                        const newSkills = [...data.skills];
+                        newSkills[actualIndex] = value;
+                        updateData('skills', newSkills);
+                      }}
+                      className="inline"
                     />
+                    {index < data.skills.slice(6, 10).length - 1 && ', '}
                     <Button
                       size="sm"
                       variant="ghost"
-                      className="opacity-0 group-hover:opacity-100 h-auto p-0 ml-1"
-                      onClick={() => removeSkill(index)}
+                      className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1 text-xs"
+                      onClick={() => {
+                        updateData('skills', data.skills.filter((_, i) => i !== actualIndex));
+                      }}
                     >
-                      <Trash2 className="w-3 h-3" />
+                      <Trash2 className="w-2 h-2" />
                     </Button>
-                  </div>
-                ))}
-              </div>
+                  </span>
+                );
+              })}
             </div>
             <div>
-              <div className="font-medium mb-1">Soft Skills</div>
-              <div className="text-sm space-y-1">
-                {data.skills.slice(Math.ceil(data.skills.length/3), Math.ceil(data.skills.length*2/3)).map((skill, index) => {
-                  const actualIndex = Math.ceil(data.skills.length/3) + index;
-                  return (
-                    <div key={actualIndex} className="flex items-center group">
-                      <EditableText
-                        value={skill}
-                        onChange={(value) => updateSkill(actualIndex, value)}
-                        className="flex-1"
-                      />
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="opacity-0 group-hover:opacity-100 h-auto p-0 ml-1"
-                        onClick={() => removeSkill(actualIndex)}
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </Button>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div>
-              <div className="font-medium mb-1">XYZ</div>
-              <div className="text-sm space-y-1">
-                {data.skills.slice(Math.ceil(data.skills.length*2/3)).map((skill, index) => {
-                  const actualIndex = Math.ceil(data.skills.length*2/3) + index;
-                  return (
-                    <div key={actualIndex} className="flex items-center group">
-                      <EditableText
-                        value={skill}
-                        onChange={(value) => updateSkill(actualIndex, value)}
-                        className="flex-1"
-                      />
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="opacity-0 group-hover:opacity-100 h-auto p-0 ml-1"
-                        onClick={() => removeSkill(actualIndex)}
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </Button>
-                    </div>
-                  );
-                })}
-              </div>
+              <span className="font-bold">Databases: </span>
+              {data.skills.slice(10).map((skill, index) => {
+                const actualIndex = 10 + index;
+                return (
+                  <span key={actualIndex} className="group/skill inline">
+                    <EditableText
+                      value={skill}
+                      onChange={(value) => {
+                        const newSkills = [...data.skills];
+                        newSkills[actualIndex] = value;
+                        updateData('skills', newSkills);
+                      }}
+                      className="inline"
+                    />
+                    {index < data.skills.slice(10).length - 1 && ', '}
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="opacity-0 group-hover/skill:opacity-100 h-auto p-0 ml-1 text-xs"
+                      onClick={() => {
+                        updateData('skills', data.skills.filter((_, i) => i !== actualIndex));
+                      }}
+                    >
+                      <Trash2 className="w-2 h-2" />
+                    </Button>
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
 
         {/* Experience */}
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-bold border-b border-gray-300 pb-1">EXPERIENCE</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>EXPERIENCE</h2>
             <Button
               size="sm"
               variant="ghost"
@@ -370,6 +385,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 };
                 updateData('experience', [...data.experience, newExp]);
               }}
+              className="text-xs"
             >
               <Plus className="w-3 h-3" />
             </Button>
@@ -377,7 +393,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
           {data.experience.map((exp) => (
             <div key={exp.id} className="mb-4 group relative">
               <div className="flex justify-between items-start mb-1">
-                <div>
+                <div className="flex-1">
                   <EditableText
                     value={exp.title}
                     onChange={(value) => {
@@ -386,10 +402,11 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       );
                       updateData('experience', newExperience);
                     }}
-                    className="font-semibold"
+                    className="font-bold block"
                     placeholder="Job Title"
+                    style={{ fontSize: '12px' }}
                   />
-                  <div className="flex items-center gap-1 text-sm">
+                  <div style={{ fontStyle: 'italic', fontSize: '11px' }}>
                     <EditableText
                       value={exp.company}
                       onChange={(value) => {
@@ -399,14 +416,15 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                         updateData('experience', newExperience);
                       }}
                       placeholder="Company Name"
+                      className="inline"
                     />
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="text-sm text-gray-600 italic">
-                    {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
+                <div className="text-right" style={{ fontSize: '11px' }}>
+                  <div>
+                    {formatDate(exp.startDate)} – {exp.current ? 'Present' : formatDate(exp.endDate)}
                   </div>
-                  <div className="text-sm text-gray-600">
+                  <div style={{ fontStyle: 'italic' }}>
                     <EditableText
                       value={exp.location}
                       onChange={(value) => {
@@ -418,19 +436,19 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       placeholder="Location"
                     />
                   </div>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="opacity-0 group-hover:opacity-100"
-                    onClick={() => {
-                      updateData('experience', data.experience.filter(e => e.id !== exp.id));
-                    }}
-                  >
-                    <Trash2 className="w-3 h-3" />
-                  </Button>
                 </div>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="opacity-0 group-hover:opacity-100 ml-2 text-xs"
+                  onClick={() => {
+                    updateData('experience', data.experience.filter(e => e.id !== exp.id));
+                  }}
+                >
+                  <Trash2 className="w-3 h-3" />
+                </Button>
               </div>
-              <ul className="text-sm space-y-1">
+              <ul className="space-y-1" style={{ fontSize: '11px' }}>
                 {exp.achievements.map((achievement, achIndex) => (
                   <li key={achIndex} className="list-disc ml-4 group/achievement">
                     <div className="flex items-start gap-1">
@@ -452,7 +470,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="opacity-0 group-hover/achievement:opacity-100 h-auto p-0"
+                        className="opacity-0 group-hover/achievement:opacity-100 h-auto p-0 text-xs"
                         onClick={() => {
                           const newExperience = data.experience.map(e => 
                             e.id === exp.id ? {
@@ -494,8 +512,8 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
 
         {/* Projects */}
         <div className="mb-6">
-          <div className="flex justify-between items-center mb-3">
-            <h2 className="text-lg font-bold border-b border-gray-300 pb-1">PROJECTS</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-bold border-b border-black pb-1" style={{ fontSize: '14px', letterSpacing: '1px' }}>PROJECTS</h2>
             <Button
               size="sm"
               variant="ghost"
@@ -509,6 +527,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 };
                 updateData('projects', [...data.projects, newProject]);
               }}
+              className="text-xs"
             >
               <Plus className="w-3 h-3" />
             </Button>
@@ -517,17 +536,36 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
             <div key={project.id} className="mb-3 group relative">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <EditableText
-                    value={project.title}
-                    onChange={(value) => {
-                      const newProjects = data.projects.map(p => 
-                        p.id === project.id ? { ...p, title: value } : p
-                      );
-                      updateData('projects', newProjects);
-                    }}
-                    className="font-semibold"
-                    placeholder="Project Title"
-                  />
+                  <div className="flex items-start gap-2">
+                    <EditableText
+                      value={project.title}
+                      onChange={(value) => {
+                        const newProjects = data.projects.map(p => 
+                          p.id === project.id ? { ...p, title: value } : p
+                        );
+                        updateData('projects', newProjects);
+                      }}
+                      className="font-bold inline"
+                      placeholder="Project Title"
+                      style={{ fontSize: '12px' }}
+                    />
+                    <span style={{ fontSize: '11px' }}>|</span>
+                    <div style={{ fontSize: '11px', fontStyle: 'italic' }}>
+                      {project.technologies.map((tech, index) => (
+                        <span key={index}>
+                          {tech}
+                          {index < project.technologies.length - 1 && ', '}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <ul className="mt-1 space-y-1" style={{ fontSize: '11px' }}>
+                    {project.description.split('. ').map((sentence, index) => (
+                      <li key={index} className="list-disc ml-4">
+                        {sentence}{index < project.description.split('. ').length - 1 && '.'}
+                      </li>
+                    ))}
+                  </ul>
                   <EditableText
                     value={project.description}
                     onChange={(value) => {
@@ -536,28 +574,15 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       );
                       updateData('projects', newProjects);
                     }}
-                    className="text-sm mb-1"
+                    className="hidden"
                     multiline
                     placeholder="Project description..."
                   />
-                  {project.link && (
-                    <EditableText
-                      value={project.link}
-                      onChange={(value) => {
-                        const newProjects = data.projects.map(p => 
-                          p.id === project.id ? { ...p, link: value } : p
-                        );
-                        updateData('projects', newProjects);
-                      }}
-                      className="text-sm text-blue-600"
-                      placeholder="Project link"
-                    />
-                  )}
                 </div>
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="opacity-0 group-hover:opacity-100"
+                  className="opacity-0 group-hover:opacity-100 text-xs"
                   onClick={() => {
                     updateData('projects', data.projects.filter(p => p.id !== project.id));
                   }}
@@ -567,21 +592,6 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Extra-Curricular Activities */}
-        <div className="mb-6">
-          <h2 className="text-lg font-bold border-b border-gray-300 pb-1 mb-3">EXTRA-CURRICULAR ACTIVITIES</h2>
-          <ul className="text-sm space-y-2">
-            <li className="list-disc ml-4">
-              <span>Actively write </span>
-              <span className="text-blue-600">blog posts</span>
-              <span> and social media posts (</span>
-              <span className="text-blue-600">TikTok, Instagram</span>
-              <span>) viewed by over 20K+ job seekers per week to help people with best practices to land their dream jobs.</span>
-            </li>
-            <li className="list-disc ml-4">Sample bullet point.</li>
-          </ul>
         </div>
       </div>
     </div>

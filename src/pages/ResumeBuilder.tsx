@@ -8,44 +8,57 @@ import { ResumeData } from '@/types/resume';
 const ResumeBuilder = () => {
   const [resumeData, setResumeData] = useState<ResumeData>({
     contact: {
-      fullName: 'K TEJESH',
+      fullName: 'K Tejesh',
       email: 'ktejesh2021@gmail.com',
-      phone: '+91 9553769344',
+      phone: '9553769344',
       linkedin: 'linkedin.com/in/tejeshk/',
-      github: 'www.tejeshkrishnammagari.com'
+      github: 'tejeshkrishnammagari.com'
     },
-    summary: 'Absolute learner and a Software Engineer with 3 plus years of experience in full stack development and automation building.',
+    summary: '',
     skills: [
-      'JavaScript', 'React', 'Node.js', 'Python', 'TypeScript', 'MongoDB', 'PostgreSQL', 'AWS', 
-      'Docker', 'Git', 'Jenkins', 'Kubernetes', 'REST APIs', 'GraphQL', 'Redux'
+      'Python', 'JavaScript', 'SQL', 'HTML/CSS', 'GraphQL', 'Java',
+      'React', 'Node.js', 'Flask', 'Material-UI',
+      'MySQL', 'MongoDB', 'Redis'
     ],
     experience: [
       {
         id: '1',
-        title: 'Software Engineer',
-        company: 'Tech Company',
-        location: 'San Francisco, CA',
-        startDate: '2017-01',
-        endDate: '2019-01',
-        current: false,
+        title: 'Software Application Development Engineer',
+        company: 'Intel Corporation',
+        location: 'Bangalore',
+        startDate: '2022-06',
+        endDate: '',
+        current: true,
         achievements: [
-          'Achieved 40% growth for XYZ using React, Node.js, and MongoDB skills.',
-          'Led development team which led to 25% improvement in system performance',
-          'Developed scalable microservices that improved API response time by 30%'
+          'Participated in all stages of the Software Development Lifecycle, including design, development, debugging, and testing.',
+          'Implemented front-end solutions with React, Redux Toolkit, Material UI, Azure SSO, and TypeScript.',
+          'Built back-end services using Node.js, GraphQL, TypeScript, Redis Cache, and Python.'
         ]
       },
       {
         id: '2',
-        title: 'Senior Software Engineer',
-        company: 'Another Tech Company',
-        location: 'San Francisco, CA',
-        startDate: '2019-01',
-        endDate: '2022-01',
+        title: 'Graduate Technical Intern',
+        company: 'Intel Corporation',
+        location: 'Bangalore',
+        startDate: '2021-09',
+        endDate: '2022-06',
         current: false,
         achievements: [
-          'Achieved 50% growth for platform using React, Python, and AWS skills.',
-          'Led cross-functional team which led to 35% improvement in user engagement',
-          'Developed cloud-native solutions that reduced infrastructure costs by 25%'
+          'Designed a License Management Web Application using AngularJS, Flask, Python, and cloud hosting.',
+          'Developed automation tools including a disclosure management system, C scripts, and Python scripts.'
+        ]
+      },
+      {
+        id: '3',
+        title: 'Summer Intern',
+        company: 'TechCiti Technologies',
+        location: 'Bangalore',
+        startDate: '2020-04',
+        endDate: '2020-05',
+        current: false,
+        achievements: [
+          'Developed a machine learning project on "Bipolar Disorder Detection" using advanced algorithms.',
+          'Presented the project at the 2021 International Semantic Intelligence Conference and published in the SCOPUS database.'
         ]
       }
     ],
@@ -54,51 +67,44 @@ const ResumeBuilder = () => {
         id: '1',
         degree: 'MTech Integrated Software Engineering',
         institution: 'VIT University, Vellore',
-        startDate: '2018-06',
-        endDate: '2022-06',
-        gpa: '9.12'
+        startDate: '2017-08',
+        endDate: '2022-05',
+        gpa: '9.13'
       },
       {
         id: '2',
-        degree: 'Intermediate',
+        degree: 'Intermediate, MPC',
         institution: 'Sai Sri Chaithanya Jr College',
-        startDate: '2015-06',
-        endDate: '2017-06',
-        gpa: ''
+        startDate: '2015-08',
+        endDate: '2017-05',
+        gpa: '97.1%'
+      },
+      {
+        id: '3',
+        degree: 'SSC',
+        institution: 'Little Angels High School',
+        startDate: '2014-06',
+        endDate: '2015-06',
+        gpa: '98%'
       }
     ],
     projects: [
       {
         id: '1',
-        title: 'Hiring Search Tool',
-        description: 'Built a tool to search for Hiring Managers and Recruiters by using ReactJS, NodeJS, Firebase and boolean queries. Over 25000 people have used it so far, with 5000+ queries being saved and shared, and search results better than LinkedIn (Try it here)',
-        link: 'https://github.com/tejesh/hiring-tool',
-        technologies: ['React', 'Node.js', 'Firebase', 'MongoDB']
+        title: 'EIP Uploads Tracker',
+        description: 'Developed a web application to track external IPs, streamlining uploads to Intel\'s central database. Utilized technologies such as Python, Flask, React, Node.js, Redis, MySQL, and MongoDB. Improved efficiency by integrating multiple systems, saving significant time on IP management tasks.',
+        link: '',
+        technologies: ['Python', 'Flask', 'React', 'Node.js', 'Redis', 'MySQL', 'MongoDB']
       },
       {
         id: '2',
-        title: 'E-commerce Platform',
-        description: 'Build a project that does something and had quantified success using React, Node.js, and MongoDB. This project\'s description spans two lines and also won an award.',
-        link: 'https://github.com/tejesh/ecommerce',
-        technologies: ['React', 'Node.js', 'MongoDB', 'Stripe']
+        title: 'EDA IP Tracker',
+        description: 'Created a tracking system for monitoring agreements with EDA companies, including status and licensing. Implemented automated tracking, notifications, and metrics to enhance workflow efficiency. Integrated real-time email notifications for approval steps and status updates.',
+        link: '',
+        technologies: ['Python', 'Flask', 'React', 'MySQL', 'MongoDB', 'Node.js']
       }
     ],
-    certifications: [
-      {
-        id: '1',
-        name: 'AWS Certified Solutions Architect',
-        issuer: 'Amazon Web Services',
-        date: '2023-01',
-        link: 'https://aws.amazon.com/certification/'
-      },
-      {
-        id: '2',
-        name: 'Google Cloud Professional Developer',
-        issuer: 'Google Cloud',
-        date: '2022-08',
-        link: 'https://cloud.google.com/certification'
-      }
-    ]
+    certifications: []
   });
 
   const handleDownloadPDF = () => {
