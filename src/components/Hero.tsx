@@ -1,5 +1,6 @@
 import { ArrowDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BackgroundAnimation from './BackgroundAnimation';
 
 const Hero = () => {
@@ -68,7 +69,7 @@ const Hero = () => {
             </span>
           </p>
           <div
-            className={`flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4 transition-all duration-1000 delay-500 ${
+            className={`flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 transition-all duration-1000 delay-500 ${
               isLoaded
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-10'
@@ -88,6 +89,13 @@ const Hero = () => {
             >
               View Experience
             </a>
+            <Link
+              to="/resume-builder"
+              className="inline-flex items-center justify-center px-6 py-3 border border-secondary bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-300 hover:shadow-md hover:translate-y-[-2px] rounded-md animate-bounce-in"
+              style={{ animationDelay: '1.1s' }}
+            >
+              Create Resume
+            </Link>
           </div>
         </div>
         <div
