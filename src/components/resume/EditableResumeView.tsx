@@ -150,8 +150,8 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         className="bg-white text-black mx-auto"
         style={{ 
           fontFamily: 'Times, serif', 
-          fontSize: '11pt', 
-          lineHeight: '1.15', 
+          fontSize: '10pt', 
+          lineHeight: '1.1', 
           width: '8.5in',
           minHeight: '11in',
           color: 'black',
@@ -161,21 +161,21 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
       >
         
         {/* Header */}
-        <div className="text-center" style={{ marginBottom: '18pt', paddingTop: '0.25in' }}>
+        <div className="text-center" style={{ marginBottom: '15pt', paddingTop: '0.15in' }}>
           <EditableText
             value={data.contact.fullName}
             onChange={(value) => updateContact('fullName', value)}
             className="text-center block"
             placeholder="Your Full Name"
             style={{ 
-              fontSize: '18pt', 
+              fontSize: '16pt', 
               fontWeight: 'bold', 
               textTransform: 'uppercase',
-              letterSpacing: '1px',
-              marginBottom: '6pt'
+              letterSpacing: '0.5px',
+              marginBottom: '5pt'
             }}
           />
-          <div className="text-center" style={{ fontSize: '11pt', lineHeight: '1.2' }}>
+          <div className="text-center" style={{ fontSize: '10pt', lineHeight: '1.1' }}>
             <EditableText
               value={data.contact.phone}
               onChange={(value) => updateContact('phone', value)}
@@ -207,13 +207,13 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Education */}
-        <div style={{ marginBottom: '18pt' }}>
+        <div style={{ marginBottom: '15pt' }}>
           <h2 className="font-bold text-left pb-1 border-b border-black uppercase tracking-wider" 
-              style={{ fontSize: '12pt', marginBottom: '12pt' }}>
+              style={{ fontSize: '11pt', marginBottom: '10pt' }}>
             Education
           </h2>
           {data.education.map((edu, index) => (
-            <div key={edu.id} style={{ marginBottom: index === data.education.length - 1 ? '0' : '10pt' }}>
+            <div key={edu.id} style={{ marginBottom: index === data.education.length - 1 ? '0' : '8pt' }}>
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <EditableText
@@ -226,7 +226,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     }}
                     className="font-bold"
                     placeholder="Institution Name"
-                    style={{ fontSize: '11pt', display: 'block' }}
+                    style={{ fontSize: '10pt', display: 'block' }}
                   />
                   <EditableText
                     value={edu.degree}
@@ -237,7 +237,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       updateData('education', newEducation);
                     }}
                     placeholder="Degree Name"
-                    style={{ fontStyle: 'italic', fontSize: '11pt', display: 'block' }}
+                    style={{ fontStyle: 'italic', fontSize: '10pt', display: 'block' }}
                   />
                 </div>
                 <div className="text-right">
@@ -253,7 +253,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       }}
                       className="inline"
                       placeholder="Grade"
-                      style={{ fontSize: '11pt' }}
+                      style={{ fontSize: '10pt' }}
                     />
                   )}
                   <br />
@@ -263,7 +263,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                       console.log('Date editing not implemented for complex parsing');
                     }}
                     placeholder="Date Range"
-                    style={{ fontStyle: 'italic', fontSize: '11pt' }}
+                    style={{ fontStyle: 'italic', fontSize: '10pt' }}
                   />
                 </div>
               </div>
@@ -272,14 +272,19 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Technical Skills */}
-        <div style={{ marginBottom: '18pt' }}>
+        <div style={{ marginBottom: '15pt' }}>
           <h2 className="font-bold text-left pb-1 border-b border-black uppercase tracking-wider" 
-              style={{ fontSize: '12pt', marginBottom: '12pt' }}>
+              style={{ fontSize: '11pt', marginBottom: '10pt' }}>
             Technical Skills
           </h2>
-          <div style={{ fontSize: '11pt', marginLeft: '0.15in', lineHeight: '1.4' }}>
-            <div style={{ marginBottom: '4pt' }}>
-              <span className="font-bold">Languages: </span>
+          <div style={{ fontSize: '10pt', marginLeft: '0.15in', lineHeight: '1.2' }}>
+            <div style={{ marginBottom: '3pt' }}>
+              <EditableText
+                value="Languages: "
+                onChange={() => {}}
+                className="font-bold inline"
+                placeholder="Languages: "
+              />
               <EditableText
                 value={data.skills.slice(0, 6).join(', ')}
                 onChange={(value) => {
@@ -294,8 +299,13 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 placeholder="Languages"
               />
             </div>
-            <div style={{ marginBottom: '4pt' }}>
-              <span className="font-bold">Frameworks: </span>
+            <div style={{ marginBottom: '3pt' }}>
+              <EditableText
+                value="Frameworks: "
+                onChange={() => {}}
+                className="font-bold inline"
+                placeholder="Frameworks: "
+              />
               <EditableText
                 value={data.skills.slice(6, 10).join(', ')}
                 onChange={(value) => {
@@ -311,7 +321,12 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
               />
             </div>
             <div>
-              <span className="font-bold">Databases: </span>
+              <EditableText
+                value="Databases: "
+                onChange={() => {}}
+                className="font-bold inline"
+                placeholder="Databases: "
+              />
               <EditableText
                 value={data.skills.slice(10).join(', ')}
                 onChange={(value) => {
@@ -328,13 +343,13 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Experience */}
-        <div style={{ marginBottom: '18pt' }}>
+        <div style={{ marginBottom: '15pt' }}>
           <h2 className="font-bold text-left pb-1 border-b border-black uppercase tracking-wider" 
-              style={{ fontSize: '12pt', marginBottom: '12pt' }}>
+              style={{ fontSize: '11pt', marginBottom: '10pt' }}>
             Experience
           </h2>
           {data.experience.map((exp, index) => (
-            <div key={exp.id} style={{ marginBottom: index === data.experience.length - 1 ? '0' : '12pt' }}>
+            <div key={exp.id} style={{ marginBottom: index === data.experience.length - 1 ? '0' : '10pt' }}>
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <EditableText
@@ -347,10 +362,10 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     }}
                     className="font-bold"
                     placeholder="Job Title"
-                    style={{ fontSize: '11pt' }}
+                    style={{ fontSize: '10pt' }}
                   />
                 </div>
-                <div className="text-right" style={{ fontSize: '11pt' }}>
+                <div className="text-right" style={{ fontSize: '10pt' }}>
                   <EditableText
                     value={formatDateRange(exp.startDate, exp.endDate, exp.current)}
                     onChange={(value) => {
@@ -360,7 +375,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                   />
                 </div>
               </div>
-              <div style={{ fontSize: '11pt', marginBottom: '6pt' }}>
+              <div style={{ fontSize: '10pt', marginBottom: '5pt' }}>
                 <span className="font-bold">
                   <EditableText
                     value={exp.company}
@@ -374,7 +389,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     className="inline"
                   />
                 </span>
-                <span style={{ marginLeft: '16px', fontStyle: 'italic' }}>
+                <span style={{ marginLeft: '12px', fontStyle: 'italic' }}>
                   <EditableText
                     value={exp.location}
                     onChange={(value) => {
@@ -388,9 +403,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                   />
                 </span>
               </div>
-              <ul style={{ fontSize: '11pt', marginLeft: '0.15in', paddingLeft: '0', listStyleType: 'disc', lineHeight: '1.3' }}>
+              <ul style={{ fontSize: '10pt', marginLeft: '0.15in', paddingLeft: '0', listStyleType: 'disc', lineHeight: '1.2' }}>
                 {exp.achievements.map((achievement, achIndex) => (
-                  <li key={achIndex} style={{ marginBottom: '3pt' }}>
+                  <li key={achIndex} style={{ marginBottom: '2pt' }}>
                     <EditableText
                       value={achievement}
                       onChange={(value) => {
@@ -414,15 +429,15 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         </div>
 
         {/* Projects */}
-        <div style={{ marginBottom: '18pt' }}>
+        <div style={{ marginBottom: '15pt' }}>
           <h2 className="font-bold text-left pb-1 border-b border-black uppercase tracking-wider" 
-              style={{ fontSize: '12pt', marginBottom: '12pt' }}>
+              style={{ fontSize: '11pt', marginBottom: '10pt' }}>
             Projects
           </h2>
           {data.projects.map((project, index) => (
-            <div key={project.id} style={{ marginBottom: index === data.projects.length - 1 ? '0' : '12pt', marginLeft: '0.15in' }}>
-              <div style={{ marginBottom: '6pt' }}>
-                <span className="font-bold" style={{ fontSize: '11pt' }}>
+            <div key={project.id} style={{ marginBottom: index === data.projects.length - 1 ? '0' : '10pt', marginLeft: '0.15in' }}>
+              <div style={{ marginBottom: '5pt' }}>
+                <span className="font-bold" style={{ fontSize: '10pt' }}>
                   <EditableText
                     value={project.title}
                     onChange={(value) => {
@@ -435,8 +450,8 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                     className="inline"
                   />
                 </span>
-                <span style={{ margin: '0 8px', fontSize: '11pt' }}> | </span>
-                <span style={{ fontSize: '11pt', fontStyle: 'italic' }}>
+                <span style={{ margin: '0 6px', fontSize: '10pt' }}> | </span>
+                <span style={{ fontSize: '10pt', fontStyle: 'italic' }}>
                   <EditableText
                     value={project.technologies.join(', ')}
                     onChange={(value) => {
@@ -453,9 +468,9 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                   />
                 </span>
               </div>
-              <ul style={{ fontSize: '11pt', paddingLeft: '16px', listStyleType: 'disc', lineHeight: '1.3' }}>
+              <ul style={{ fontSize: '10pt', paddingLeft: '12px', listStyleType: 'disc', lineHeight: '1.2' }}>
                 {project.description.split('.').filter(sentence => sentence.trim()).map((sentence, index) => (
-                  <li key={index} style={{ marginBottom: '3pt' }}>
+                  <li key={index} style={{ marginBottom: '2pt' }}>
                     <EditableText
                       value={sentence.trim() + '.'}
                       onChange={(value) => {
