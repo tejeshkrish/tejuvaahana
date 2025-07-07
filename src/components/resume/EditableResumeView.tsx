@@ -150,12 +150,12 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         className="bg-white text-black mx-auto"
         style={{ 
           fontFamily: 'Times, serif', 
-          fontSize: '12pt', 
-          lineHeight: '1.15', 
+          fontSize: '11pt', 
+          lineHeight: '1.1', 
           width: '8.5in',
           minHeight: '11in',
           color: 'black',
-          padding: '0.75in',
+          padding: '0.5in',
           margin: '0'
         }}
       >
