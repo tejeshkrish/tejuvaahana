@@ -182,16 +182,18 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
       <div className="bg-white shadow-lg">
         <div 
           ref={previewRef} 
-          className="bg-white text-black mx-auto"
+          className="bg-white text-black"
           style={{ 
             fontFamily: 'Times, serif', 
             fontSize: '10pt', 
             lineHeight: '1.0', 
             width: '8.5in',
-            minHeight: '11in',
+            height: '11in',
             color: 'black',
-            padding: '0',
-            margin: '0'
+            padding: '1px',
+            margin: '0',
+            boxSizing: 'border-box',
+            overflow: 'hidden'
           }}
         >
           
