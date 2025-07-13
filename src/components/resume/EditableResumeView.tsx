@@ -188,12 +188,13 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
             fontSize: '10pt', 
             lineHeight: '1.0', 
             width: '8.5in',
-            height: '11in',
+            minHeight: '11in',
             color: 'black',
             padding: '1px',
             margin: '0',
             boxSizing: 'border-box',
-            overflow: 'hidden'
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
           
