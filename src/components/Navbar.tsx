@@ -55,24 +55,11 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { id: 'home', label: 'Home', isSection: true },
-    { id: 'about', label: 'About', isSection: true },
-    { id: 'experience', label: 'Experience', isSection: true },
-    { id: 'skills', label: 'Skills', isSection: true },
-    { id: 'education', label: 'Education', isSection: true },
-    { id: 'contact', label: 'Contact', isSection: true },
-    { id: 'travel-blogs', label: 'Travel', isSection: false, path: '/travel-blogs' },
+    { id: 'travel-blogs', label: 'Travel', path: '/travel-blogs' },
   ];
 
   const handleNavClick = (item: typeof navItems[0]) => {
-    if (item.isSection) {
-      if (location.pathname !== '/') {
-        navigate('/');
-        setTimeout(() => scrollToSection(item.id), 100);
-      } else {
-        scrollToSection(item.id);
-      }
-    } else if (item.path) {
+    if (item.path) {
       navigate(item.path);
     }
   };
@@ -95,17 +82,13 @@ const Navbar = () => {
                   onClick={() => handleNavClick(item)}
                   className={cn(
                     'nav-link relative overflow-hidden',
-                    (item.isSection && activeSection === item.id) || (!item.isSection && location.pathname === item.path)
-                      ? 'active text-primary font-medium' 
-                      : ''
+                    location.pathname === item.path ? 'active text-primary font-medium' : ''
                   )}
                 >
                   {item.label}
                   <span className={cn(
                     "absolute bottom-0 left-0 w-full h-0.5 bg-primary transform transition-transform duration-300",
-                    (item.isSection && activeSection === item.id) || (!item.isSection && location.pathname === item.path)
-                      ? "scale-x-100" 
-                      : "scale-x-0 origin-left"
+                    location.pathname === item.path ? "scale-x-100" : "scale-x-0 origin-left"
                   )}></span>
                 </button>
               </li>
@@ -133,9 +116,7 @@ const Navbar = () => {
                       }}
                       className={cn(
                         'text-xl hover:text-primary transition-colors w-full text-left py-2',
-                        (item.isSection && activeSection === item.id) || (!item.isSection && location.pathname === item.path)
-                          ? 'text-primary font-medium' 
-                          : ''
+                        location.pathname === item.path ? 'text-primary font-medium' : ''
                       )}
                     >
                       {item.label}
