@@ -31,9 +31,21 @@ const Experience = () => {
 
   const experiences = [
     {
+      title: "IP Enablement Engineer",
+      company: "Intel Corporation",
+      period: "May 2025 - Present",
+      location: "Bengaluru, Karnataka, India",
+      responsibilities: [
+        "Leading IP enablement initiatives and technical documentation",
+        "Collaborating with cross-functional teams to enable semiconductor IP",
+        "Part-time storytelling through technical content creation"
+      ],
+      skills: ["IP Development", "Technical Documentation", "Cross-functional Collaboration", "Storytelling"]
+    },
+    {
       title: "Software Application Development Engineer",
       company: "Intel Corporation",
-      period: "Jun 2022 - Present · 2 yrs 11 mos",
+      period: "Jun 2022 - Apr 2025 · 2 yrs 11 mos",
       location: "Bengaluru, Karnataka, India",
       responsibilities: [
         "Developed and deployed full stack applications using React, Python, and Node.js",

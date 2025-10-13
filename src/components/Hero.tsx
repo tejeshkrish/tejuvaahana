@@ -59,14 +59,14 @@ const Hero = () => {
             }`}
           >
             <span className="animate-text-focus-in inline-block">
-              Software Application Development Engineer
+              IP Enablement Engineer at Intel
             </span>
             <br />
             <span
               className="animate-text-focus-in inline-block"
               style={{ animationDelay: '0.4s' }}
             >
-              Full Stack Development
+              cum part time story teller
             </span>
           </p>
           <div
