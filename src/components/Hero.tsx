@@ -2,6 +2,7 @@ import { ArrowDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BackgroundAnimation from './BackgroundAnimation';
+import profilePicture from '@/assets/profile-picture.jpeg';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -116,7 +117,7 @@ const Hero = () => {
               style={{ animationDelay: '1.2s' }}
             >
               <img
-                src="/lovable-uploads/02fbb8f6-1abc-4070-9228-1a4ac756417b.png"
+                src={profilePicture}
                 alt="Tejesh Krishnammagari"
                 className="w-full h-full object-cover"
               />
