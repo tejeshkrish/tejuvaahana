@@ -198,7 +198,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
         >
           
           {/* Header */}
-          <div className="text-center" style={{ marginBottom: '0.12in' }}>
+          <div className="text-center" style={{ marginBottom: '0.15in' }}>
             <EditableText
               value={data.contact.fullName}
               onChange={(value) => updateContact('fullName', value)}
@@ -244,7 +244,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
           </div>
 
           {/* Education */}
-          <div style={{ marginBottom: '0.1in' }}>
+          <div style={{ marginBottom: '0.12in' }}>
             <h2 className="font-bold text-left pb-1 border-b border-black uppercase tracking-wide" 
                 style={{ 
                   fontSize: '11pt', 
@@ -313,7 +313,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
           </div>
 
           {/* Technical Skills */}
-          <div style={{ marginBottom: '0.1in' }}>
+          <div style={{ marginBottom: '0.12in' }}>
             <h2 className="font-bold text-left pb-1 border-b border-black uppercase tracking-wide" 
                 style={{ 
                   fontSize: '11pt', 
@@ -392,7 +392,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
           </div>
 
           {/* Experience */}
-          <div style={{ marginBottom: '0.1in' }}>
+          <div style={{ marginBottom: '0.12in' }}>
             <h2 className="font-bold text-left pb-1 border-b border-black uppercase tracking-wide" 
                 style={{ 
                   fontSize: '11pt', 
@@ -403,7 +403,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
               Experience
             </h2>
             {data.experience.map((exp, index) => (
-              <div key={exp.id} style={{ marginBottom: index === data.experience.length - 1 ? '0' : '3pt' }}>
+              <div key={exp.id} style={{ marginBottom: index === data.experience.length - 1 ? '0' : '4pt' }}>
                 <div className="flex justify-between items-start" style={{ marginBottom: '0.5pt' }}>
                   <div className="flex-1">
                     <EditableText
@@ -495,7 +495,7 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
               Projects
             </h2>
             {data.projects.map((project, index) => (
-              <div key={project.id} style={{ marginBottom: index === data.projects.length - 1 ? '0' : '3pt' }}>
+              <div key={project.id} style={{ marginBottom: index === data.projects.length - 1 ? '0' : '4pt' }}>
                 <div style={{ marginBottom: '0.5pt' }}>
                   <span className="font-bold" style={{ fontSize: '11pt', fontWeight: 'bold' }}>
                     <EditableText
