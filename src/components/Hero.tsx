@@ -52,21 +52,14 @@ const Hero = () => {
             <span className="block">Tejesh Krishnammagari</span>
           </h1>
           <p
-            className={`text-xl md:text-2xl font-garamond text-muted-foreground transition-all duration-1000 delay-300 ${
+            className={`text-lg md:text-xl font-garamond text-muted-foreground transition-all duration-1000 delay-300 ${
               isLoaded
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-10'
             }`}
           >
             <span className="animate-text-focus-in inline-block">
-              IP Enablement Engineer at Intel
-            </span>
-            <br />
-            <span
-              className="animate-text-focus-in inline-block"
-              style={{ animationDelay: '0.4s' }}
-            >
-              cum part time story teller
+              IP Enablement Engineer at Intel | Part-time Storyteller
             </span>
           </p>
           <div
