@@ -224,21 +224,21 @@ const EditableResumeView = ({ data, onChange }: EditableResumeViewProps) => {
                 value={data.contact.email}
                 onChange={(value) => updateContact('email', value)}
                 placeholder="email@example.com"
-                className="inline underline"
+                className="inline"
               />
               <span className="mx-1"> | </span>
               <EditableText
                 value={data.contact.linkedin}
                 onChange={(value) => updateContact('linkedin', value)}
                 placeholder="linkedin.com/in/username"
-                className="inline underline"
+                className="inline"
               />
               <span className="mx-1"> | </span>
               <EditableText
                 value={data.contact.github}
                 onChange={(value) => updateContact('github', value)}
                 placeholder="website.com"
-                className="inline underline"
+                className="inline"
               />
             </div>
           </div>
