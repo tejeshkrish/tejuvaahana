@@ -1,7 +1,8 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Download, Home } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Download, Home, Lock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import EditableResumeView from '@/components/resume/EditableResumeView';
 import { ResumeData } from '@/types/resume';
@@ -9,6 +10,29 @@ import { ResumeData } from '@/types/resume';
 const ResumeBuilder = () => {
   const navigate = useNavigate();
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const ACCESS_CODE = 'tejesh2024'; // Change this to your preferred password
+
+  useEffect(() => {
+    const savedAuth = sessionStorage.getItem('resumeAccess');
+    if (savedAuth === 'granted') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ACCESS_CODE) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('resumeAccess', 'granted');
+      setError('');
+    } else {
+      setError('Invalid access code');
+      setPassword('');
+    }
+  };
   
   const [resumeData, setResumeData] = useState<ResumeData>({
     contact: {
@@ -106,6 +130,13 @@ const ResumeBuilder = () => {
         description: 'Created a tracking system for monitoring agreements with EDA companies, including status and licensing. Implemented automated tracking, notifications, and metrics to enhance workflow efficiency. Integrated real-time email notifications for approval steps and status updates.',
         link: '',
         technologies: ['Python', 'Flask', 'React', 'MySQL', 'MongoDB', 'Node.js']
+      },
+      {
+        id: '3',
+        title: 'Project Title',
+        description: 'Project description goes here. Add details about what you built and the impact it had. Include technologies used and key achievements.',
+        link: '',
+        technologies: ['Technology1', 'Technology2', 'Technology3']
       }
     ],
     certifications: []
@@ -121,6 +152,34 @@ const ResumeBuilder = () => {
       setIsDownloading(false);
     }, 2000);
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+          <div className="flex items-center justify-center mb-6">
+            <Lock className="w-12 h-12 text-gray-600" />
+          </div>
+          <h1 className="text-2xl font-bold text-center mb-2">Resume Builder Access</h1>
+          <p className="text-gray-600 text-center mb-6">Enter access code to continue</p>
+          <form onSubmit={handlePasswordSubmit}>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter access code"
+              className="mb-4"
+              autoFocus
+            />
+            {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+            <Button type="submit" className="w-full">
+              Access Resume Builder
+            </Button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
