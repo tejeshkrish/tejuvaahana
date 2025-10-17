@@ -40,7 +40,7 @@ const TravelBlogs = () => {
         </Link>
 
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-garamond font-semibold mb-4">
+          <h1 className="text-4xl md:text-5xl font-garamond font-bold mb-4">
             Travel Stories
           </h1>
           <p className="text-lg text-muted-foreground">

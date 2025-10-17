@@ -76,17 +76,10 @@ const Hero = () => {
             >
               Get In Touch
             </a>
-            <a
-              href="#experience"
-              className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary hover:bg-primary/5 transition-all duration-300 hover:shadow-md hover:translate-y-[-2px] rounded-md animate-bounce-in"
-              style={{ animationDelay: '0.9s' }}
-            >
-              View Experience
-            </a>
             <Link
               to="/resume-builder"
               className="inline-flex items-center justify-center px-6 py-3 border border-secondary bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all duration-300 hover:shadow-md hover:translate-y-[-2px] rounded-md animate-bounce-in"
-              style={{ animationDelay: '1.1s' }}
+              style={{ animationDelay: '0.9s' }}
             >
               Create Resume
             </Link>
