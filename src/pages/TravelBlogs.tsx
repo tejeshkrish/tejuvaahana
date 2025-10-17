@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar } from 'lucide-react';
 import nenthyaImage from '../assets/nenthya.jpeg';
-import TravelBlogModal from '@/components/TravelBlogModal';
-import { mongoliaStory } from '@/data/mongoliaStory';
+import BookModal from '@/components/BookModal';
+import { mongoliaBook } from '@/data/mongoliaBook';
 
 import {
   Card,
@@ -86,11 +86,13 @@ const TravelBlogs = () => {
           ))}
         </div>
 
-        <TravelBlogModal
+        <BookModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title="Mongolian Odyssey"
-          content={mongoliaStory}
+          author="Tejesh Krishnammagari"
+          coverImage={nenthyaImage}
+          pages={mongoliaBook}
         />
       </div>
     </div>
