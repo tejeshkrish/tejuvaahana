@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, MapPin, Calendar } from 'lucide-react';
 import nenthyaImage from '../assets/nenthya.jpeg';
+import TravelBlogModal from '@/components/TravelBlogModal';
+import { mongoliaStory } from '@/data/mongoliaStory';
 
 import {
   Card,
@@ -12,6 +14,8 @@ import {
 } from '@/components/ui/card';
 
 const TravelBlogs = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   useEffect(() => {
     document.title = 'Travel Blogs | Tejesh Krishnammagari';
   }, []);
@@ -52,7 +56,8 @@ const TravelBlogs = () => {
           {blogs.map((blog) => (
             <Card
               key={blog.id}
-              className="overflow-hidden hover:shadow-lg transition-shadow"
+              className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => setIsModalOpen(true)}
             >
               <div className="aspect-video relative overflow-hidden">
                 <img
@@ -80,6 +85,13 @@ const TravelBlogs = () => {
             </Card>
           ))}
         </div>
+
+        <TravelBlogModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Mongolian Odyssey"
+          content={mongoliaStory}
+        />
       </div>
     </div>
   );
