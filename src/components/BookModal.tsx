@@ -72,7 +72,7 @@ const BookModal = ({ isOpen, onClose, title, author, coverImage, pages }: BookMo
         )}
         
         {page.image && page.imagePosition === 'top' && (
-          <div className="rounded-lg overflow-hidden shadow-lg mb-6 bg-amber-100 dark:bg-amber-900">
+          <div className="rounded-lg overflow-hidden shadow-lg mb-6">
             <img 
               src={page.image} 
               alt={page.title || 'Page illustration'}
@@ -82,7 +82,7 @@ const BookModal = ({ isOpen, onClose, title, author, coverImage, pages }: BookMo
         )}
 
         {page.image && page.imagePosition === 'full' && (
-          <div className="rounded-lg overflow-hidden shadow-lg mb-6 bg-amber-100 dark:bg-amber-900">
+          <div className="rounded-lg overflow-hidden shadow-lg mb-6">
             <img 
               src={page.image} 
               alt={page.title || 'Page illustration'}
@@ -100,7 +100,7 @@ const BookModal = ({ isOpen, onClose, title, author, coverImage, pages }: BookMo
         </div>
 
         {page.image && (page.imagePosition === 'bottom' || page.imagePosition === 'right') && (
-          <div className="rounded-lg overflow-hidden shadow-lg mt-6 bg-amber-100 dark:bg-amber-900">
+          <div className="rounded-lg overflow-hidden shadow-lg mt-6">
             <img 
               src={page.image} 
               alt={page.title || 'Page illustration'}
