@@ -1,3 +1,13 @@
+import mongoliaAirport from '@/assets/mongolia-airport.jpg';
+import mongoliaDoorway from '@/assets/mongolia-doorway.jpg';
+import mongoliaYak from '@/assets/mongolia-yak.jpg';
+import mongoliaFlag from '@/assets/mongolia-flag.jpg';
+import mongoliaHorses from '@/assets/mongolia-horses.jpg';
+import mongoliaFood from '@/assets/mongolia-food.jpg';
+import mongoliaBikesLake from '@/assets/mongolia-bikes-lake.jpg';
+import mongoliaSolo from '@/assets/mongolia-solo.jpg';
+import mongoliaGroup from '@/assets/mongolia-group.jpg';
+
 export const mongoliaBook = [
   {
     type: 'content' as const,
@@ -7,7 +17,7 @@ export const mongoliaBook = [
 Stepping onto the tarmac, I felt the crisp autumn air fill my lungs, carrying with it the faint scent of distant grasslands and the promise of adventure. Ulaanbaatar lay before me, a city caught between epochs—Soviet-era apartment blocks stood alongside gleaming modern towers, while traditional gers dotted the hillsides like white mushrooms after rain.
 
 That first evening, I wandered through Sukhbaatar Square, the heart of modern Mongolia. The imposing statue of Chinggis Khan dominated the space, his stone gaze fixed on the horizon his armies once conquered. Around me, the city pulsed with life—young Mongolians in modern dress hurried past elderly nomads in traditional deel robes, street vendors sold steaming buuz, and somewhere in the distance, the haunting notes of a morin khuur drifted through the air.`,
-    image: 'https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&h=600&fit=crop',
+    image: mongoliaAirport,
     imagePosition: 'top' as const,
   },
   {
@@ -23,7 +33,7 @@ I ordered airag, the traditional fermented mare's milk, and raised my glass to t
     content: `Dawn broke cold and clear as we left Ulaanbaatar behind. My guide, Bataar, was a man shaped by the steppe—weathered skin the color of leather, eyes that squinted perpetually against the wind, and hands that spoke of a lifetime working with horses and harsh weather. His Russian-made jeep rattled and groaned over roads that were more suggestion than reality.
 
 As the city's outskirts faded, the steppe emerged in all its glory. There is no way to adequately describe the feeling of seeing it for the first time—the sheer, overwhelming vastness of it. The earth rolled away in gentle waves, stretching to a horizon so distant it seemed to mock the very concept of distance. The sky above was impossibly large, a dome of blue so pure it hurt to look at.`,
-    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop',
+    image: mongoliaYak,
     imagePosition: 'top' as const,
   },
   {
@@ -39,7 +49,7 @@ We stopped for lunch at a nomadic family's ger, a white felt structure that appe
     content: `The Mongolian horse is not a beautiful creature by conventional standards. Short, stocky, with a thick coat and sturdy legs, it lacks the elegance of Arabian steeds or the majesty of thoroughbreds. But what it lacks in beauty, it makes up for in resilience and spirit. These are the horses that carried the Mongol armies across continents, that can survive on nothing but grass and snow, that know the steppe better than any GPS ever could.
 
 Mounting my assigned horse—a dun-colored mare with intelligent eyes—I felt a mixture of excitement and trepidation. The last time I had ridden was years ago, on a well-mannered trail horse in a carefully controlled environment. This was different. This horse was half-wild, and the trail was simply the direction Bataar pointed.`,
-    image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=800&h=600&fit=crop',
+    image: mongoliaHorses,
     imagePosition: 'full' as const,
   },
   {
@@ -47,6 +57,8 @@ Mounting my assigned horse—a dun-colored mare with intelligent eyes—I felt a
     content: `We rode for hours, and with each passing mile, I felt something shift inside me. The rhythm of the horse's gait, the whisper of wind through grass, the absolute silence broken only by natural sounds—it all conspired to strip away the layers of modern life. Out here, there were no deadlines, no emails, no endless scroll of social media. There was only the present moment, the movement of the horse, the vast sky above.
 
 In the distance, I spotted a herd of wild horses, their manes flowing as they galloped across the steppe. Bataar pulled his horse to a stop, and we watched in silence. The takhi, he said quietly, referring to the Przewalski horses, the last truly wild horses on Earth. They were gone, hunted to extinction. But we brought them back. Mongolia remembers its horses.`,
+    image: mongoliaFlag,
+    imagePosition: 'bottom' as const,
   },
   {
     type: 'content' as const,
@@ -54,7 +66,7 @@ In the distance, I spotted a herd of wild horses, their manes flowing as they ga
     content: `That night, I experienced my first night in a traditional ger. From the outside, these structures appear simple—a circular frame covered in felt, with a stovepipe protruding from the center. But inside, I discovered a space that was both functional and deeply comfortable, a dwelling perfected over thousands of years of nomadic life.
 
 The ger's design is ingenious. The circular shape provides maximum space with minimum materials and offers no corners for wind to catch. The felt walls provide insulation against both heat and cold. The central opening allows smoke to escape while also serving as a natural clock—you can tell the time by observing which section of the ger the sunlight illuminates.`,
-    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=600&fit=crop',
+    image: mongoliaFood,
     imagePosition: 'top' as const,
   },
   {
@@ -69,7 +81,7 @@ Later, unable to sleep, I stepped outside into the night. The sight that greeted
     content: `The transition from steppe to desert was gradual yet profound. The grass grew sparser, the earth harder and more rocky. The air grew drier, hotter during the day and bitingly cold at night. We had entered the Gobi Desert, one of the world's largest and most forbidding landscapes.
 
 But forbidding is the wrong word. The Gobi is harsh, yes, but it possesses a austere beauty that takes your breath away. The sand dunes rise like frozen waves, their crests sharp as knife blades. The colors shift with the light—ochre in the morning, gold at midday, deep crimson as the sun sets.`,
-    image: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&h=600&fit=crop',
+    image: mongoliaBikesLake,
     imagePosition: 'full' as const,
   },
   {
@@ -77,6 +89,8 @@ But forbidding is the wrong word. The Gobi is harsh, yes, but it possesses a aus
     content: `Khongoryn Els, the Singing Dunes, lived up to their legendary name. As wind swept across their surface, the sand produced a low, resonant hum—a sound both eerie and beautiful. Local legend says the dunes sing the songs of lost travelers, their voices carried eternally on the desert wind.
 
 I climbed to the top of the highest dune, a journey that left me breathless and covered in sand. But the view from the summit made every difficult step worthwhile. The desert stretched to every horizon, an ocean of sand and stone. In the distance, I could see the snow-capped peaks of the Gobi Altai mountains, a reminder that even in this seeming wasteland, life and beauty persist.`,
+    image: mongoliaSolo,
+    imagePosition: 'bottom' as const,
   },
   {
     type: 'content' as const,
@@ -84,7 +98,7 @@ I climbed to the top of the highest dune, a journey that left me breathless and 
     content: `My final morning in Mongolia, I woke before dawn and climbed a hill overlooking Ulaanbaatar. As the sun rose, painting the sky in shades of pink and gold, I thought about everything I had experienced—the vast steppes, the warm hospitality, the ancient traditions surviving in a modern world.
 
 Mongolia had changed me in ways I was still processing. It taught me about space—real, physical space, the kind that modern city dwellers never experience. It taught me about simplicity—how much we don't actually need, how little is required for happiness when you have good company, good food, and a warm fire. It taught me about resilience—how humans have thrived for millennia in one of Earth's harshest environments.`,
-    image: 'https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=800&h=600&fit=crop',
+    image: mongoliaGroup,
     imagePosition: 'bottom' as const,
   },
   {

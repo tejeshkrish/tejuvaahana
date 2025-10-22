@@ -59,7 +59,7 @@ const Hero = () => {
             }`}
           >
             <span className="animate-text-focus-in inline-block">
-              IP Enablement Engineer at Intel
+              IP Enablement Engineer | Part-time Storyteller at Intel
             </span>
           </p>
           <div
