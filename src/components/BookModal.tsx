@@ -76,7 +76,7 @@ const BookModal = ({ isOpen, onClose, title, author, coverImage, pages }: BookMo
             <img 
               src={page.image} 
               alt={page.title || 'Page illustration'}
-              className="w-full h-80 object-contain"
+              className="w-full h-64 object-contain"
             />
           </div>
         )}
@@ -86,7 +86,7 @@ const BookModal = ({ isOpen, onClose, title, author, coverImage, pages }: BookMo
             <img 
               src={page.image} 
               alt={page.title || 'Page illustration'}
-              className="w-full h-[500px] object-contain"
+              className="w-full h-96 object-contain"
             />
           </div>
         )}
@@ -104,7 +104,7 @@ const BookModal = ({ isOpen, onClose, title, author, coverImage, pages }: BookMo
             <img 
               src={page.image} 
               alt={page.title || 'Page illustration'}
-              className="w-full h-80 object-contain"
+              className="w-full h-64 object-contain"
             />
           </div>
         )}
